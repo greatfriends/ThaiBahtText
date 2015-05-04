@@ -21,7 +21,7 @@ namespace GFDN.ThaiBahtText {
     public static string ThaiBahtText(this decimal amount) {
       string result;
 
-      if (amount == 0) return ("");
+      if (amount == 0) return ("ศูนย์บาทถ้วน");
 
       splitCurr(amount);
       result = "";
