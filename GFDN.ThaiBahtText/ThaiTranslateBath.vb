@@ -52,7 +52,7 @@ End Module
 Public Module Thai
     Friend Const OVal As String = "ศูนย์บาทถ้วน"
 
-    Private Scale() As String = {"", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน"}
+    Private Scale() As String = {"ล้าน", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน"}
     Private Figures() As String = {"", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า"}
 
     Friend Function Translate(Input As String) As String
@@ -84,7 +84,7 @@ Public Module Thai
         With New Text.StringBuilder
             For i = 0 To Count
                 Value = Val(Base(i))
-                Position = Count Mod 7
+                Position = Count Mod 6
 
                 Select Case True
                     Case Value = 0 'And Position > 0
@@ -95,6 +95,8 @@ Public Module Thai
                         .Append("ยี่สิบ")
                     Case Value = 1 And Position = 0 And Length > 0
                         .Append("เอ็ด")
+                    Case Position = 0 And Count = 0
+                        .Append(Figures(Value))
                     Case Else
                         .Append(Figures(Value))
                         .Append(Scale(Position))
