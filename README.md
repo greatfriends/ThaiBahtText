@@ -5,3 +5,5 @@ Generate money amount text in Thai language for example: from 100.00 will be "à¸
 This project use xUnit 2.0 console runner. You can run test by execute `test.bat` in your command prompt. 
 The test result also generated to `Result.html` file
 
+## Original 
+Pick the source code from my post in GreatFriends.Biz web site since 1996.
