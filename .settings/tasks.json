@@ -1,0 +1,12 @@
+{
+    "version": "0.1.0",
+    "command": "msbuild.exe",
+    "args": [
+        "/property:GenerateFullPaths=true"
+    ],
+    "taskConfiguration": {
+        "build": {
+            "problemMatcher": "$msbuild"
+        }
+    }
+}
