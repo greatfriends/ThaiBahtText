@@ -48,6 +48,38 @@ namespace GFDN.ThaiBahtText {
 
 
 
+    private static void splitCurr(decimal m) {
+      string s;
+      int L;
+      int position;
+
+      s = System.Convert.ToString(m);
+      position = s.IndexOf(".");
+      if ((position >= 0)) {
+        s1 = s.Substring(0, position);
+        s3 = s.Substring(position + 1);
+        if (s3 == "00") {
+          s3 = "";
+        }
+      }
+      else {
+        s1 = s;
+        s3 = "";
+      }
+      L = s1.Length;
+      if ((L > 6)) {
+        s2 = s1.Substring(L - 6);
+        s1 = s1.Substring(0, L - 6);
+      }
+      else {
+        s2 = s1;
+        s1 = "";
+      }
+
+      if ((s1 != "") && (Convert.ToInt32(s1) == 0)) s1 = "";
+      if ((s2 != "") && (Convert.ToInt32(s2) == 0)) s2 = "";
+    }
+
     private static string Speak(string s) {
       int L, c;
       string result;
@@ -66,7 +98,7 @@ namespace GFDN.ThaiBahtText {
             if (L == 1) {
               return ("หนึ่ง");
             }
-            if ((L > 1) && (s.Substring(L - 1, 1) == "0")) {
+            if ((L > 1) && (s.Substring(L - 1 - 1, 1) == "0")) {
               result = result + "หนึ่ง";
             }
             else {
@@ -128,38 +160,6 @@ namespace GFDN.ThaiBahtText {
       }
 
       return (result);
-    }
-
-    private static void splitCurr(decimal m) {
-      string s;
-      int L;
-      int position;
-
-      s = System.Convert.ToString(m);
-      position = s.IndexOf(".");
-      if ((position >= 0)) {
-        s1 = s.Substring(0, position);
-        s3 = s.Substring(position + 1);
-        if (s3 == "00") {
-          s3 = "";
-        }
-      }
-      else {
-        s1 = s;
-        s3 = "";
-      }
-      L = s1.Length;
-      if ((L > 6)) {
-        s2 = s1.Substring(L - 6);
-        s1 = s1.Substring(0, L - 6);
-      }
-      else {
-        s2 = s1;
-        s1 = "";
-      }
-
-      if ((s1 != "") && (Convert.ToInt32(s1) == 0)) s1 = "";
-      if ((s2 != "") && (Convert.ToInt32(s2) == 0)) s2 = "";
     }
 
 
