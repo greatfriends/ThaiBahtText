@@ -18,7 +18,8 @@ namespace GFDN.ThaiBahtText {
 
     private static readonly string[] rankThai = { "", "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" };
     private static readonly string[] digitThai = { "", "หนึ่ง", "สอง", "สาม", "สี่", 
-                                                   "ห้า", "หก", "เจ็ด", "แปด", "เก้า" };
+                                                   "ห้า",  "หก", "เจ็ด", "แปด", "เก้า" };
+
 
     /// <summary>
     /// ให้ข้อความจำนวนเงินภาษาไทย
@@ -26,27 +27,40 @@ namespace GFDN.ThaiBahtText {
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal? amount) {
+      if (amount == null) {
+        return ThaiBahtText(0m);
+      }
+      else {
+        return ThaiBahtText(amount.Value);
+      }
+    }
 
-      if (amount == null || amount == 0) {
+
+    /// <summary>
+    /// ให้ข้อความจำนวนเงินภาษาไทย
+    /// </summary>
+    /// <param name="amount">จำนวนเงิน</param>
+    /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
+    public static string ThaiBahtText(this decimal amount) {
+
+      if (amount == 0) {
         return "ศูนย์บาทถ้วน";
       }
 
       var result = new StringBuilder();
 
-      // uses decimal, it's faster than stay using amount as "decimal?"
-      // becuuse no overhead when assign decimal to decimal?
-      decimal amt = Math.Round(amount.Value, 2, MidpointRounding.AwayFromZero);
+      amount = Math.Round(amount, 2, MidpointRounding.AwayFromZero);
 
-      if (amt < MinValue || MaxValue < amt) {
+      if (amount < MinValue || MaxValue < amount) {
         throw new NotSupportedException();
       }
 
-      if (amt < 0) {
+      if (amount < 0) {
         result.Append("ลบ");
-        amt = -amt;
+        amount = -amount;
       }
 
-      var parts = decompose(amt);
+      var parts = decompose(amount);
 
       if (parts[0].Length > 0) {
         result.Append(speak(parts[0]));
@@ -66,6 +80,7 @@ namespace GFDN.ThaiBahtText {
 
       return result.ToString();
     }
+
 
     private static string[] decompose(decimal amount) {
       string text;
@@ -105,13 +120,14 @@ namespace GFDN.ThaiBahtText {
       return new string[] { s1, s2, s3 };
     }
 
+
     private static string speak(string text) {
 
       if (string.IsNullOrWhiteSpace(text)) return string.Empty;
 
-      int length    = text.Length;
+      int length = text.Length;
       string result = string.Empty;
-      int c         = 0;       
+      int c = 0;
       bool negative = false;
 
       for (int i = 0; i < length; i++) {
@@ -133,7 +149,7 @@ namespace GFDN.ThaiBahtText {
           else if ((i == length - 2) && (c == 1)) {
             result += "สิบ";
           }
-          else if (c != 0) { 
+          else if (c != 0) {
             result += digitThai[c] + rankThai[length - i];
           }
         }

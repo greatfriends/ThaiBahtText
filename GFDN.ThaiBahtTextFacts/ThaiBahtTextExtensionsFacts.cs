@@ -120,5 +120,21 @@ namespace GFDN.ThaiBahtTextFacts {
 
       // Assert.Equal("ลบหนึ่งล้านเก้าแสนเก้าหมื่นหนึ่งร้อยล้านสองแสนสองร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(1990100200200m));
     }
+
+    [Fact]
+    public void ExtensionMethodUsage() {
+      decimal price = 11.50m;
+      decimal? total = null;
+
+      Assert.Equal("สิบเอ็ดบาทห้าสิบสตางค์", price.ThaiBahtText());
+      Assert.Equal("ศูนย์บาทถ้วน", total.ThaiBahtText());
+      Assert.Equal("สิบเอ็ดบาทห้าสิบสตางค์", ThaiBahtTextUtil.ThaiBahtText(price));
+    }
+
+    [Fact]
+    public void MinAndMaxValues() {
+      Assert.Equal("เก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าบาทเก้าสิบเก้าสตางค์", ThaiBahtTextUtil.MaxValue.ThaiBahtText());
+      Assert.Equal("ลบเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าบาทเก้าสิบเก้าสตางค์", ThaiBahtTextUtil.MinValue.ThaiBahtText());
+    }
   }
 }
