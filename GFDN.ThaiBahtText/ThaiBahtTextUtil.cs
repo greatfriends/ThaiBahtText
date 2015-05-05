@@ -64,8 +64,6 @@ namespace GFDN.ThaiBahtText {
       return result.ToString();
     }
 
-
-
     private static string[] splitCurr(decimal m) {
       string s1, s2, s3;
       string s;
@@ -114,8 +112,7 @@ namespace GFDN.ThaiBahtText {
 
       for (int i = 0; i < L; i++) {
         if ((s.Substring(i, 1) == "-")) {
-          negative = true;
-          // result = result + "ลบ";
+          negative = true; 
         }
         else {
           c = System.Convert.ToInt32(s.Substring(i, 1));
@@ -141,49 +138,6 @@ namespace GFDN.ThaiBahtText {
       }
       return (result);
     }
-
-    private static string speakStang(string s) {
-      int L, c;
-      string result;
-
-      L = s.Length;
-
-      if (L == 0) return ("");
-
-      if (L == 1) {
-        s = s + "0";
-        L = 2;
-      }
-      if (L > 2) {
-        s = s.Substring(0, 2);
-        L = 2;
-      }
-      result = "";
-
-      for (int i = 0; i < 2; i++) {
-        c = Convert.ToInt32(s.Substring(i, 1));
-        if ((i == L - 1) && (c == 1)) {
-          if (Convert.ToInt32(s.Substring(0, 1)) == 0)
-            result = result + "หนึ่ง";
-          else
-            result = result + "เอ็ด";
-        }
-        else if ((i == L - 2) && (c == 2)) {
-          result = result + "ยี่สิบ";
-        }
-        else if ((i == L - 2) && (c == 1)) {
-          result = result + "สิบ";
-        }
-        else {
-          if (c != 0) {
-            result = result + numSpeak[c] + suffix[L - i];
-          }
-        }
-      }
-
-      return (result);
-    }
-
 
   }
 }
