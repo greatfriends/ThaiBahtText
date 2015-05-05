@@ -19,14 +19,19 @@ namespace GFDN.ThaiBahtText {
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal? amount) {
-      string result;
+      string result = "";
 
       if (amount == null || amount == 0) return ("ศูนย์บาทถ้วน");
 
       amount = Math.Round(amount.Value, 2, MidpointRounding.AwayFromZero);
 
+      if (amount < 0) {
+        result = "ลบ";
+        amount = Math.Abs(amount.Value);
+      }
+
       splitCurr(amount.Value);
-      result = "";
+      
       if (s1.Length > 0) {
         result = result + Speak(s1) + "ล้าน";
       }
@@ -39,7 +44,7 @@ namespace GFDN.ThaiBahtText {
       else {
         result = result + "ถ้วน";
       }
-      return (result);
+      return result;
     }
 
     private static string s1 = "";
@@ -96,7 +101,7 @@ namespace GFDN.ThaiBahtText {
       for (int i = 0; i < L; i++) {
         if ((s.Substring(i, 1) == "-")) {
           negative = true;
-          result = result + "ลบ";
+          // result = result + "ลบ";
         }
         else {
           c = System.Convert.ToInt32(s.Substring(i, 1));
@@ -140,6 +145,7 @@ namespace GFDN.ThaiBahtText {
         L = 2;
       }
       result = "";
+
       for (int i = 0; i < 2; i++) {
         c = Convert.ToInt32(s.Substring(i, 1));
         if ((i == L - 1) && (c == 1)) {

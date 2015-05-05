@@ -49,7 +49,7 @@ namespace GFDN.ThaiBahtTextFacts {
     public void BigNumbers() {
       Assert.Equal("หนึ่งหมื่นสองพันสามร้อยสี่สิบห้าบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(12345));
       Assert.Equal("สิบสองล้านสามแสนสี่หมื่นห้าพันหกร้อยเจ็ดสิบแปดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(12345678));
-      Assert.Equal("หกแสนเจ็ดหมื่นห้าพันเอ็ดล้านสามแสนสามหมื่นสามพันหนึ่งร้อยสิบเอ็ดบาทถ้วน", 
+      Assert.Equal("หกแสนเจ็ดหมื่นห้าพันเอ็ดล้านสามแสนสามหมื่นสามพันหนึ่งร้อยสิบเอ็ดบาทถ้วน",
                    ThaiBahtTextUtil.ThaiBahtText(675001333111));
     }
 
@@ -85,6 +85,15 @@ namespace GFDN.ThaiBahtTextFacts {
       Assert.Equal("แปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0750m));
       Assert.Equal("เจ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0710m));
       Assert.Equal("แปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0790m));
+    }
+
+    [Fact]
+    public void TwoDecimalPlacesOnly_Negatives() {
+      Assert.Equal("ลบหกสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0550m));
+      Assert.Equal("ลบเจ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0650m));
+      Assert.Equal("ลบแปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0750m));
+      Assert.Equal("ลบเจ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0710m));
+      Assert.Equal("ลบแปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0790m));
     }
   }
 }
