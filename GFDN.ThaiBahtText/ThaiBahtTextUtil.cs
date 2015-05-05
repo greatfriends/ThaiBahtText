@@ -13,8 +13,12 @@ namespace GFDN.ThaiBahtText {
   /// </summary>
   public static class ThaiBahtTextUtil {
 
-    private static readonly string[] suffix = { "", "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" };
-    private static readonly string[] numSpeak = { "", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า" };
+    public static decimal MaxValue = 999999999999.99m;
+    public static decimal MinValue = -999999999999.99m;
+
+    private static readonly string[] rankThai = { "", "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" };
+    private static readonly string[] digitThai = { "", "หนึ่ง", "สอง", "สาม", "สี่", 
+                                                   "ห้า", "หก", "เจ็ด", "แปด", "เก้า" };
 
     /// <summary>
     /// ให้ข้อความจำนวนเงินภาษาไทย
@@ -28,23 +32,21 @@ namespace GFDN.ThaiBahtText {
       }
 
       var result = new StringBuilder();
-      decimal amt;
 
-      amt = Math.Round(amount.Value, 2, MidpointRounding.AwayFromZero);
+      // uses decimal, it's faster than stay using amount as "decimal?"
+      // becuuse no overhead when assign decimal to decimal?
+      decimal amt = Math.Round(amount.Value, 2, MidpointRounding.AwayFromZero);
 
-      if (amt >= 1000000000000) {
-        throw new NotSupportedException();
-      }
-      if (amt <= -1000000000000) {
+      if (amt < MinValue || MaxValue < amt) {
         throw new NotSupportedException();
       }
 
       if (amt < 0) {
         result.Append("ลบ");
-        amt = Math.Abs(amt);
+        amt = -amt;
       }
 
-      var parts = splitCurr(amt);
+      var parts = decompose(amt);
 
       if (parts[0].Length > 0) {
         result.Append(Speak(parts[0]));
@@ -61,82 +63,83 @@ namespace GFDN.ThaiBahtText {
       else {
         result.Append("ถ้วน");
       }
+
       return result.ToString();
     }
 
-    private static string[] splitCurr(decimal m) {
-      string s1, s2, s3;
-      string s;
-      int L;
+    private static string[] decompose(decimal amount) {
+      string text;
+      string s1;
+      string s2;
+      string s3;
       int position;
 
-      s = m.ToString("0.00"); // System.Convert.ToString(m);
-      position = s.IndexOf(".");
-      if ((position >= 0)) {
-        s1 = s.Substring(0, position);
-        s3 = s.Substring(position + 1);
+      text = amount.ToString("0.00");
+
+      position = text.IndexOf('.');
+      if (position >= 0) {
+        s1 = text.Substring(0, position);
+        s3 = text.Substring(position + 1);
         if (s3 == "00") {
-          s3 = "";
+          s3 = string.Empty;
         }
       }
       else {
-        s1 = s;
-        s3 = "";
+        s1 = text;
+        s3 = string.Empty;
       }
-      L = s1.Length;
-      if ((L > 6)) {
-        s2 = s1.Substring(L - 6);
-        s1 = s1.Substring(0, L - 6);
+
+      int length = s1.Length;
+      if (length > 6) {
+        s2 = s1.Substring(length - 6);
+        s1 = s1.Substring(0, length - 6);
       }
       else {
         s2 = s1;
-        s1 = "";
+        s1 = string.Empty;
       }
 
-      if ((s1 != "") && (Convert.ToInt32(s1) == 0)) s1 = "";
-      if ((s2 != "") && (Convert.ToInt32(s2) == 0)) s2 = "";
+      if ((s1.Length > 0) && (int.Parse(s1) == 0)) s1 = string.Empty;
+      if ((s2.Length > 0) && (int.Parse(s2) == 0)) s2 = string.Empty;
 
       return new string[] { s1, s2, s3 };
     }
 
-    private static string Speak(string s) {
-      int L, c;
-      string result;
+    private static string Speak(string text) {
 
-      if (s == "") return ("");
+      if (string.IsNullOrWhiteSpace(text)) return string.Empty;
 
-      result = "";
-      L = s.Length;
-
+      int length    = text.Length;
+      string result = string.Empty;
+      int c         = 0;       
       bool negative = false;
 
-      for (int i = 0; i < L; i++) {
-        if ((s.Substring(i, 1) == "-")) {
-          negative = true; 
+      for (int i = 0; i < length; i++) {
+        if (text[i] == '-') {
+          negative = true;
         }
         else {
-          c = System.Convert.ToInt32(s.Substring(i, 1));
-          if ((i == L - 1) && (c == 1)) {
-            if (L == 1 || (negative && L == 2)) {
-              result = result + "หนึ่ง";
+          c = int.Parse(text[i].ToString());
+          if ((i == length - 1) && (c == 1)) {
+            if (length == 1 || (negative && length == 2)) {
+              result += "หนึ่ง";
               return result;
             }
-            result = result + "เอ็ด";
+            result += "เอ็ด";
           }
-          else if ((i == L - 2) && (c == 2)) {
-            result = result + "ยี่สิบ";
+          else if ((i == length - 2) && (c == 2)) {
+            result += "ยี่สิบ";
           }
-          else if ((i == L - 2) && (c == 1)) {
-            result = result + "สิบ";
+          else if ((i == length - 2) && (c == 1)) {
+            result += "สิบ";
           }
-          else {
-            if (c != 0) {
-              result = result + numSpeak[c] + suffix[L - i];
-            }
+          else if (c != 0) { 
+            result += digitThai[c] + rankThai[length - i];
           }
         }
       }
-      return (result);
+
+      return result;
     }
 
   }
