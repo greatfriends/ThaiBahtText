@@ -1,10 +1,11 @@
-﻿using GFDN.ThaiBahtText;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Xunit;
+using GFDN.ThaiBahtText;
 
 namespace GFDN.ThaiBahtTextFacts {
   public class ThaiBahtTextExtensionsFacts {
@@ -64,6 +65,13 @@ namespace GFDN.ThaiBahtTextFacts {
       decimal? price = null;
 
       Assert.Equal("ศูนย์บาทถ้วน", price.ThaiBahtText());
+    }
+
+    [Fact]
+    public void NegativeAmounts() {
+      Assert.Equal("ลบหนึ่งบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(-1));
+      Assert.Equal("ลบสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(-11));
+      Assert.Equal("ลบห้าร้อยห้าสิบบาทยี่สิบห้าสตางค์", ThaiBahtTextUtil.ThaiBahtText(-550.25m));
     }
   }
 }

@@ -88,15 +88,20 @@ namespace GFDN.ThaiBahtText {
 
       result = "";
       L = s.Length;
+
+      bool negative = false;
+      
       for (int i = 0; i < L; i++) {
         if ((s.Substring(i, 1) == "-")) {
-          result = result + "ติดลบ";
+          negative = true;
+          result = result + "ลบ";
         }
         else {
           c = System.Convert.ToInt32(s.Substring(i, 1));
           if ((i == L - 1) && (c == 1)) {
-            if (L == 1) {
-              return ("หนึ่ง");
+            if (L == 1 || (negative && L == 2)) {
+              result = result + "หนึ่ง";
+              return result;
             }
             if ((L > 1) && (s.Substring(L - 1 - 1, 1) == "0")) {
               result = result + "หนึ่ง";
