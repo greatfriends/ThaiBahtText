@@ -23,6 +23,8 @@ namespace GFDN.ThaiBahtText {
 
       if (amount == null || amount == 0) return ("ศูนย์บาทถ้วน");
 
+      amount = Math.Round(amount.Value, 2, MidpointRounding.AwayFromZero);
+
       splitCurr(amount.Value);
       result = "";
       if (s1.Length > 0) {

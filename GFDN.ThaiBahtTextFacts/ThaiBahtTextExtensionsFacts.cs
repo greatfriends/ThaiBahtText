@@ -77,5 +77,14 @@ namespace GFDN.ThaiBahtTextFacts {
       Assert.Equal("ลบสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(-11));
       Assert.Equal("ลบห้าร้อยห้าสิบบาทยี่สิบห้าสตางค์", ThaiBahtTextUtil.ThaiBahtText(-550.25m));
     }
+
+    [Fact]
+    public void TwoDecimalPlacesOnly() {
+      Assert.Equal("หกสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0550m));
+      Assert.Equal("เจ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0650m));
+      Assert.Equal("แปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0750m));
+      Assert.Equal("เจ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0710m));
+      Assert.Equal("แปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0790m));
+    }
   }
 }
