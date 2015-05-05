@@ -25,6 +25,13 @@ namespace GFDN.ThaiBahtText {
 
       amount = Math.Round(amount.Value, 2, MidpointRounding.AwayFromZero);
 
+      if (amount >= 1000000000000) {
+        throw new NotSupportedException();
+      }
+      if (amount <= -1000000000000) {
+        throw new NotSupportedException();
+      }
+
       if (amount < 0) {
         result = "ลบ";
         amount = Math.Abs(amount.Value);

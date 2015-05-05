@@ -95,5 +95,30 @@ namespace GFDN.ThaiBahtTextFacts {
       Assert.Equal("ลบเจ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0710m));
       Assert.Equal("ลบแปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0790m));
     }
+
+    [Fact]
+    public void ExtremeValues() {
+
+      Assert.Equal("เก้าแสนเก้าหมื่นหนึ่งร้อยล้านสองแสนสองร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(990100200200m));
+
+      Assert.Throws<NotSupportedException>(() => {
+        var s = ThaiBahtTextUtil.ThaiBahtText(1990100200200m);
+      });
+
+      // Assert.Equal("หนึ่งล้านเก้าแสนเก้าหมื่นหนึ่งร้อยล้านสองแสนสองร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(1990100200200m));
+    }
+
+
+    [Fact]
+    public void ExtremeValues_Negatives() {
+
+      Assert.Equal("ลบเก้าแสนเก้าหมื่นหนึ่งร้อยล้านสองแสนสองร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(-990100200200m));
+
+      Assert.Throws<NotSupportedException>(() => {
+        var s = ThaiBahtTextUtil.ThaiBahtText(-1990100200200m);
+      });
+
+      // Assert.Equal("ลบหนึ่งล้านเก้าแสนเก้าหมื่นหนึ่งร้อยล้านสองแสนสองร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(1990100200200m));
+    }
   }
 }
