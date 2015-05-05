@@ -37,16 +37,20 @@ namespace GFDN.ThaiBahtTextFacts {
       Assert.Equal("สามสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(31));
       Assert.Equal("สี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(41));
       Assert.Equal("เก้าสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(91));
-      Assert.Equal("หนึ่งร้อยหนึ่งบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(101));
+      Assert.Equal("หนึ่งร้อยเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(101));
       Assert.Equal("หนึ่งร้อยสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(111));
       Assert.Equal("หนึ่งร้อยยี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(121));
+
+      Assert.Equal("หนึ่งพันเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(1001));
+      Assert.Equal("ห้าพันเอ็ดล้านห้าร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001000500));
     }
 
     [Fact]
     public void BigNumbers() {
       Assert.Equal("หนึ่งหมื่นสองพันสามร้อยสี่สิบห้าบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(12345));
       Assert.Equal("สิบสองล้านสามแสนสี่หมื่นห้าพันหกร้อยเจ็ดสิบแปดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(12345678));
-      Assert.Equal("ห้าพันหนึ่งล้านสามแสนสามหมื่นสามพันหนึ่งร้อยสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001333111));
+      Assert.Equal("หกแสนเจ็ดหมื่นห้าพันเอ็ดล้านสามแสนสามหมื่นสามพันหนึ่งร้อยสิบเอ็ดบาทถ้วน", 
+                   ThaiBahtTextUtil.ThaiBahtText(675001333111));
     }
 
     [Fact]

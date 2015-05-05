@@ -90,7 +90,7 @@ namespace GFDN.ThaiBahtText {
       L = s.Length;
 
       bool negative = false;
-      
+
       for (int i = 0; i < L; i++) {
         if ((s.Substring(i, 1) == "-")) {
           negative = true;
@@ -103,12 +103,7 @@ namespace GFDN.ThaiBahtText {
               result = result + "หนึ่ง";
               return result;
             }
-            if ((L > 1) && (s.Substring(L - 1 - 1, 1) == "0")) {
-              result = result + "หนึ่ง";
-            }
-            else {
-              result = result + "เอ็ด";
-            }
+            result = result + "เอ็ด";
           }
           else if ((i == L - 2) && (c == 2)) {
             result = result + "ยี่สิบ";
