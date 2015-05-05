@@ -1,5 +1,5 @@
-<?xml version="1.0"?>
-<package >
+<?xml version="1.0" ?>
+<package>
   <metadata>
     <id>$id$</id>
     <version>$version$</version>
@@ -10,8 +10,9 @@
     <iconUrl>https://raw.githubusercontent.com/greatfriends/greatfriends.github.io/master/images/gf.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+    <releaseNotes></releaseNotes>
     <copyright>Copyright 2015</copyright>
     <tags>Thai Baht Text Money Translation Thailand</tags>
   </metadata>
+
 </package>
