@@ -18,12 +18,12 @@ namespace GFDN.ThaiBahtText {
     /// </summary>
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
-    public static string ThaiBahtText(this decimal amount) {
+    public static string ThaiBahtText(this decimal? amount) {
       string result;
 
-      if (amount == 0) return ("ศูนย์บาทถ้วน");
+      if (amount == null || amount == 0) return ("ศูนย์บาทถ้วน");
 
-      splitCurr(amount);
+      splitCurr(amount.Value);
       result = "";
       if (s1.Length > 0) {
         result = result + Speak(s1) + "ล้าน";

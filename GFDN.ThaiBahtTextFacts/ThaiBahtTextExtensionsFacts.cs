@@ -59,5 +59,11 @@ namespace GFDN.ThaiBahtTextFacts {
       Assert.Equal("ห้าร้อยหกสิบบาทแปดสิบสามสตางค์", ThaiBahtTextUtil.ThaiBahtText(560.83m));
     }
 
+    [Fact]
+    public void NullAmount() {
+      decimal? price = null;
+
+      Assert.Equal("ศูนย์บาทถ้วน", price.ThaiBahtText());
+    }
   }
 }
