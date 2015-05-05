@@ -13,61 +13,66 @@ namespace GFDN.ThaiBahtText {
   /// </summary>
   public static class ThaiBahtTextUtil {
 
+    private static readonly string[] suffix = { "", "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" };
+    private static readonly string[] numSpeak = { "", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า" };
+
     /// <summary>
     /// ให้ข้อความจำนวนเงินภาษาไทย
     /// </summary>
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal? amount) {
-      string result = "";
 
-      if (amount == null || amount == 0) return ("ศูนย์บาทถ้วน");
+      if (amount == null || amount == 0) {
+        return "ศูนย์บาทถ้วน";
+      }
 
-      amount = Math.Round(amount.Value, 2, MidpointRounding.AwayFromZero);
+      var result = new StringBuilder();
+      decimal amt;
 
-      if (amount >= 1000000000000) {
+      amt = Math.Round(amount.Value, 2, MidpointRounding.AwayFromZero);
+
+      if (amt >= 1000000000000) {
         throw new NotSupportedException();
       }
-      if (amount <= -1000000000000) {
+      if (amt <= -1000000000000) {
         throw new NotSupportedException();
       }
 
-      if (amount < 0) {
-        result = "ลบ";
-        amount = Math.Abs(amount.Value);
+      if (amt < 0) {
+        result.Append("ลบ");
+        amt = Math.Abs(amt);
       }
 
-      splitCurr(amount.Value);
-      
-      if (s1.Length > 0) {
-        result = result + Speak(s1) + "ล้าน";
+      var parts = splitCurr(amt);
+
+      if (parts[0].Length > 0) {
+        result.Append(Speak(parts[0]));
+        result.Append("ล้าน");
       }
-      if (s2.Length > 0) {
-        result = result + Speak(s2) + "บาท";
+      if (parts[1].Length > 0) {
+        result.Append(Speak(parts[1]));
+        result.Append("บาท");
       }
-      if (s3.Length > 0) {
-        result = result + speakStang(s3) + "สตางค์";
+      if (parts[2].Length > 0) {
+        result.Append(Speak(parts[2]));
+        result.Append("สตางค์");
       }
       else {
-        result = result + "ถ้วน";
+        result.Append("ถ้วน");
       }
-      return result;
+      return result.ToString();
     }
 
-    private static string s1 = "";
-    private static string s2 = "";
-    private static string s3 = "";
-    private static string[] suffix = { "", "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" };
-    private static string[] numSpeak = { "", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า", "หก", "เจ็ด", "แปด", "เก้า" };
 
 
-
-    private static void splitCurr(decimal m) {
+    private static string[] splitCurr(decimal m) {
+      string s1, s2, s3;
       string s;
       int L;
       int position;
 
-      s = System.Convert.ToString(m);
+      s = m.ToString("0.00"); // System.Convert.ToString(m);
       position = s.IndexOf(".");
       if ((position >= 0)) {
         s1 = s.Substring(0, position);
@@ -92,6 +97,8 @@ namespace GFDN.ThaiBahtText {
 
       if ((s1 != "") && (Convert.ToInt32(s1) == 0)) s1 = "";
       if ((s2 != "") && (Convert.ToInt32(s2) == 0)) s2 = "";
+
+      return new string[] { s1, s2, s3 };
     }
 
     private static string Speak(string s) {
