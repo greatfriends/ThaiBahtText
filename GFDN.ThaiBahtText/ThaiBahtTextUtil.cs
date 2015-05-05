@@ -49,15 +49,15 @@ namespace GFDN.ThaiBahtText {
       var parts = decompose(amt);
 
       if (parts[0].Length > 0) {
-        result.Append(Speak(parts[0]));
+        result.Append(speak(parts[0]));
         result.Append("ล้าน");
       }
       if (parts[1].Length > 0) {
-        result.Append(Speak(parts[1]));
+        result.Append(speak(parts[1]));
         result.Append("บาท");
       }
       if (parts[2].Length > 0) {
-        result.Append(Speak(parts[2]));
+        result.Append(speak(parts[2]));
         result.Append("สตางค์");
       }
       else {
@@ -105,7 +105,7 @@ namespace GFDN.ThaiBahtText {
       return new string[] { s1, s2, s3 };
     }
 
-    private static string Speak(string text) {
+    private static string speak(string text) {
 
       if (string.IsNullOrWhiteSpace(text)) return string.Empty;
 
