@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xunit;
-using GFDN.ThaiBahtText;
+using GreatFriends.ThaiBahtText;
 
-namespace GFDN.ThaiBahtTextFacts {
+namespace GreatFriends.ThaiBahtTextFacts {
   public class ThaiBahtTextExtensionsFacts {
 
 

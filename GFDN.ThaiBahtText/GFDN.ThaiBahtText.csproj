@@ -7,8 +7,8 @@
     <ProjectGuid>{80B1CE43-F13D-40EF-A5D2-0411066F5FBF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GFDN.ThaiBahtText</RootNamespace>
-    <AssemblyName>GFDN.ThaiBahtText</AssemblyName>
+    <RootNamespace>GreatFriends.ThaiBahtText</RootNamespace>
+    <AssemblyName>GreatFriends.ThaiBahtText</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

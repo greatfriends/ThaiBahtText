@@ -11,10 +11,10 @@ At first post in the web in VB.NET language (http://greatfriends.biz/webboards/m
 and then convert to C# language (http://www.greatfriends.biz/webboards/msg.asp?id=5695).
 
 ## How to use
-1. Add reference to GFDN.ThaiBahtText.Dll (download from Releases tab)
+1. Add reference to GreatFriends.ThaiBahtText.Dll (download from Releases tab)
 2. See below sample code and apply as needed:
 
-		using GFDN.ThaiBahtText;
+		using GreatFriends.ThaiBahtText;
 		
 		...
 		decimal price = 11.50;
