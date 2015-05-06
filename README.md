@@ -1,18 +1,30 @@
 # ThaiBahtText
-Generate money amount text in Thai language for example: from 121.50 will be "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
+ให้ข้อความจำนวนเงินภาษาไทย เช่น จำนวน 121.50 บาท จะให้ผลลัพธ์เป็น "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
 
-## How to test
-This project use xUnit 2.0 console runner. You can run test by execute `test.bat` in your command prompt. 
-The test result also generated to `Result.html` file
 
-## Original 
-Pick the source code from my post in GreatFriends.Biz web site since 1996.
-At first post in the web in VB.NET language (http://greatfriends.biz/webboards/msg.asp?id=5331)
-and then convert to C# language (http://www.greatfriends.biz/webboards/msg.asp?id=5695).
+## ที่มา
+ผมหยิบ source code เก่า จากกระทู้ในเว็บเกรทเฟรนด์ที่เขียนไว้ตั้งแต่ปี 1996 (พ.ศ. 2546) ซึ่งแรกเลยเขียนเป็นภาษา VBA ใน MS Access 2.0
+นำมาตอบปัญหาในกระทู้โดยแปลงเป็น Visual Basic .NET ที่ http://greatfriends.biz/webboards/msg.asp?id=5331
+และหลังจากนั้นก็ได้แปลงเป็นภาษา C# ที่ http://www.greatfriends.biz/webboards/msg.asp?id=5695
 
-## How to use
-1. Add reference to GreatFriends.ThaiBahtText.Dll (download from Releases tab)
-2. See below sample code and apply as needed:
+ThaiBahtText เป็นฟังก์ชั่นที่โปรแกรมเมอร์ทั้งหลายเขียนใช้กันอยู่แล้ว สำหรับพิมพ์จำนวนเงินในเอกสารการเงินต่างๆ 
+แต่เราไม่มีฟังก์ชั่นหลักที่เป็น open source project (พบว่าฟังก์ชั่น BAHTTEXT() ของ Excel และ OpenOffice ก็ยังให้ผลต่างกัน)
+และเหล่าโปรแกรมเมอร์ทั้งหลายได้ร่วมหัวคิดกันว่าควรจะอ่านหรือสะกดจำนวนเงินให้ถูกต้องอย่างไร ผมจึงคิดว่าเอาเรื่องเล็กๆ อย่างนี้
+มาทำให้จริงจัง ค้นคว้า สอบถาม และทำให้สมบูรณ์ โดยมีการทดสอบ (Unit testing) อย่างรอบด้าน ซึ่งก็พบว่าโค้ดเก่านั้น
+ไม่สนับสนุนในบางกรณี และในบางกรณีก็ให้ผลลัพธ์ที่ไม่ถูกต้องด้วย ดังนั้นเราไม่ควรเชื่อถือโค้ดตัวเองจนกว่าจะได้ตรวจสอบอย่างหนักเท่านั้น
+
+## กี่บาทถ้วน?
+ข้อความจำนวนเงิน ก็คือเขียน "คำอ่านจำนวนเงิน" นั้นออกมาให้ชัดแจ้งเท่านั้นเอง โดยมีหลักการที่ยังหาข้อสรุปแน่นอนไม่ได้
+อยู่บ้างในกรณี "เอ็ด" ซึ่งมี 2-3 รูปแบบ (จะดำเนินการสอบถามไปยังราชบัณฑิตยสถานต่อไป) โดยในไลบรารี ThaiBahtText นี้
+ให้มีตัวเลือกสองกรณีคือ ใช้เอ็ดเฉพาะกับหลักสิบเท่านั้น (เช่น 201.00 เป็น สองร้อยหนึ่งบาทถ้น) 
+และ ใช้เอ็ดเสมอ (เช่น 201.00 เป็น สองร้อยเอ็ดบาทถ้วน) เลือกรูปแบบนี้ได้โดยส่งค่า enum `UsesEt` ที่ต้องการให้กับฟังก์ชั่น ThaiBahtText
+
+## เริมต้นใช้งาน
+1. ติดตั้งผ่าน NuGet
+
+    PM> Install-Package ThaiBahtText
+				
+2. ศึกษาการใช้จากโค้ดตัวอย่างนี้
 
 		using GreatFriends.ThaiBahtText;
 		
@@ -20,6 +32,35 @@ and then convert to C# language (http://www.greatfriends.biz/webboards/msg.asp?i
 		decimal price = 11.50;
 		decimal? total = null;
 		
-		string s1 = price.ThaiBahtText(); // สิบเอ็ดบาทห้าสิบสตางค์ (ใช้ในรูปแบบ extension method)
-		string s2 = total.ThaiBahtText(); // ศูนย์บาทถ้วน
-		string s3 = ThaiBahtTextUtil.ThaiBahtText(total); // ใช้ในรูปแบบปกติ
+		string s01 = price.ThaiBahtText(); // สิบเอ็ดบาทห้าสิบสตางค์ (ใช้ในรูปแบบ extension method)
+		string s02 = total.ThaiBahtText(); // ศูนย์บาทถ้วน
+		string s03 = ThaiBahtTextUtil.ThaiBahtText(total); // หรือใช้ในรูปแบบปกติก็ได้
+
+
+## การอ่านค่าหนึ่งในหลักหน่วย
+รูปแบบที่ 1 ใช้**เอ็ด**เฉพาะกับหลักสิบเท่านั้น (เป็นค่าเริ่มต้น) กล่าวคือถ้าหลักสิบเป็น 0 จะไม่อ่านว่า**เอ็ด**แต่เป็น**หนึ่ง**แทน
+
+    string s11 = (101m).ThaiBahtText(mode: UsesEt.TensOnly); // หนึ่งร้อยหนึ่งบาทถ้วน
+		string s12 = (101m).ThaiBahtText(); // หนึ่งร้อยหนึ่งบาทถ้วน
+
+    string s13 = (11m).ThaiBahtText(); // สิบเอ็ดบาทถ้วน
+    string s14 = (211m).ThaiBahtText(); // สองร้อยสิบเอ็ดบาทถ้วน
+    string s15 = (1001m).ThaiBahtText(UsesEt.TensOnly); // หนึ่งพันหนึ่งบาทถ้วน
+		string s16 = (1001000000m).ThaiBahtText(); // หนึ่งพันหนึ่งล้านบาทถ้วน
+		
+รูปแบบที่ 2 ใช้**เอ็ด**เสมอ สำหรับหลักหน่วยที่มีค่าเป็น 1 รวมถึงหลักล้านที่มีค่าเป็น 1 ด้วย
+
+    string s21 = (101m).ThaiBahtText(mode: UsesEt.Always); // หนึ่งร้อยเอ็ดบาทถ้วน
+		string s22 = (101m).ThaiBahtText(UsesEt.Always); // หนึ่งร้อยเอ็ดบาทถ้วน
+
+    string s23 = (11m).ThaiBahtText(UsesEt.Always); // สิบเอ็ดบาทถ้วน
+    string s24 = (211m).ThaiBahtText(UsesEt.Always); // สองร้อยสิบเอ็ดบาทถ้วน
+    string s25 = (1001m).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดบาทถ้วน
+		string s26 = (1001000000m).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดล้านบาทถ้วน
+
+
+## วิธีการรันเทสต์
+โปรเจ็กต์นี้ใช้ xUnit 2.0 รันในโหมด console เมื่อ clone โปรเจ็กต์ไปแล้ว ให้รัน `test.bat` ใน command prompt 
+จะเห็นผลลัพธ์ของการ test เลย แต่เนื่องจากภาษาไทยแสดงใน console ไม่ได้ ให้ดูผลในไฟล์ `Result.html` จะดูได้ง่ายและสวยงามกว่า
+
+
