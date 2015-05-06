@@ -63,15 +63,20 @@ namespace GreatFriends.ThaiBahtText {
       var parts = decompose(amount);
 
       if (parts[0].Length > 0) {
-        result.Append(speak(parts[0]));
+        result.Append(speak(parts[0], mode));
         result.Append("ล้าน");
       }
       if (parts[1].Length > 0) {
-        result.Append(speak(parts[1]));
+        result.Append(speak(parts[1], mode));
         result.Append("บาท");
       }
+      else {
+        if (parts[0].Length > 0) {
+          result.Append("บาท");
+        }
+      }
       if (parts[2].Length > 0) {
-        result.Append(speak(parts[2]));
+        result.Append(speak(parts[2], mode));
         result.Append("สตางค์");
       }
       else {
@@ -121,13 +126,14 @@ namespace GreatFriends.ThaiBahtText {
     }
 
 
-    private static string speak(string text) {
+    private static string speak(string text, UsesEt mode) {
 
       if (string.IsNullOrWhiteSpace(text)) return string.Empty;
 
       int length = text.Length;
       string result = string.Empty;
       int c = 0;
+      int lastc = -1;
       bool negative = false;
 
       for (int i = 0; i < length; i++) {
@@ -136,12 +142,23 @@ namespace GreatFriends.ThaiBahtText {
         }
         else {
           c = int.Parse(text[i].ToString());
+
           if ((i == length - 1) && (c == 1)) {
             if (length == 1 || (negative && length == 2)) {
               result += "หนึ่ง";
               return result;
             }
-            result += "เอ็ด";
+            if (mode == UsesEt.Always) {
+              result += "เอ็ด";
+            }
+            else if (mode == UsesEt.TensOnly) {
+              if (lastc == 0) {
+                result += "หนึ่ง";
+              }
+              else {
+                result += "เอ็ด";
+              }
+            }
           }
           else if ((i == length - 2) && (c == 2)) {
             result += "ยี่สิบ";
@@ -153,6 +170,7 @@ namespace GreatFriends.ThaiBahtText {
             result += digitThai[c] + rankThai[length - i];
           }
         }
+        lastc = c;
       }
 
       return result;
