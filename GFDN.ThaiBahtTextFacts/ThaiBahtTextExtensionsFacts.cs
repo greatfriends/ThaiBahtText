@@ -25,9 +25,17 @@ namespace GreatFriends.ThaiBahtTextFacts {
       Assert.Equal("สิบบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(10));
     }
 
+
+    [Fact]
+    public void NullAmount() {
+      decimal? price = null;
+
+      Assert.Equal("ศูนย์บาทถ้วน", price.ThaiBahtText());
+    }
+
     [Fact]
     public void Zero() {
-      Assert.Equal("ศูนย์บาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(0));
+      Assert.Equal("ศูนย์บาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(0.0m));
     }
 
     [Fact]
@@ -37,12 +45,12 @@ namespace GreatFriends.ThaiBahtTextFacts {
       Assert.Equal("สามสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(31));
       Assert.Equal("สี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(41));
       Assert.Equal("เก้าสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(91));
-      Assert.Equal("หนึ่งร้อยเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(101));
+      Assert.Equal("หนึ่งร้อยหนึ่งบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(101));
       Assert.Equal("หนึ่งร้อยสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(111));
       Assert.Equal("หนึ่งร้อยยี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(121));
 
-      Assert.Equal("หนึ่งพันเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(1001));
-      Assert.Equal("ห้าพันเอ็ดล้านห้าร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001000500));
+      Assert.Equal("หนึ่งพันหนึ่งบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(1001));
+      Assert.Equal("ห้าพันหนึ่งล้านห้าร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001000500));
     }
 
     [Fact]
@@ -64,12 +72,6 @@ namespace GreatFriends.ThaiBahtTextFacts {
       Assert.Equal("ห้าร้อยหกสิบบาทแปดสิบสามสตางค์", ThaiBahtTextUtil.ThaiBahtText(560.83m));
     }
 
-    [Fact]
-    public void NullAmount() {
-      decimal? price = null;
-
-      Assert.Equal("ศูนย์บาทถ้วน", price.ThaiBahtText());
-    }
 
     [Fact]
     public void NegativeAmounts() {
@@ -98,27 +100,16 @@ namespace GreatFriends.ThaiBahtTextFacts {
 
     [Fact]
     public void ExtremeValues() {
-
-      Assert.Equal("เก้าแสนเก้าหมื่นหนึ่งร้อยล้านสองแสนสองร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(990100200200m));
-
       Assert.Throws<NotSupportedException>(() => {
         var s = ThaiBahtTextUtil.ThaiBahtText(1990100200200m);
-      });
-
-      // Assert.Equal("หนึ่งล้านเก้าแสนเก้าหมื่นหนึ่งร้อยล้านสองแสนสองร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(1990100200200m));
+      }); 
     }
-
 
     [Fact]
     public void ExtremeValues_Negatives() {
-
-      Assert.Equal("ลบเก้าแสนเก้าหมื่นหนึ่งร้อยล้านสองแสนสองร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(-990100200200m));
-
       Assert.Throws<NotSupportedException>(() => {
         var s = ThaiBahtTextUtil.ThaiBahtText(-1990100200200m);
       });
-
-      // Assert.Equal("ลบหนึ่งล้านเก้าแสนเก้าหมื่นหนึ่งร้อยล้านสองแสนสองร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(1990100200200m));
     }
 
     [Fact]
@@ -136,5 +127,33 @@ namespace GreatFriends.ThaiBahtTextFacts {
       Assert.Equal("เก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าบาทเก้าสิบเก้าสตางค์", ThaiBahtTextUtil.MaxValue.ThaiBahtText());
       Assert.Equal("ลบเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าบาทเก้าสิบเก้าสตางค์", ThaiBahtTextUtil.MinValue.ThaiBahtText());
     }
+
+    [Fact]
+    public void UsesEt_TensOnly() {
+      Assert.Equal("สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(11, UsesEt.TensOnly));
+      Assert.Equal("ยี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(21, UsesEt.TensOnly));
+      Assert.Equal("สามสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(31, UsesEt.TensOnly));
+      Assert.Equal("เก้าสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(91, UsesEt.TensOnly));
+      Assert.Equal("หนึ่งร้อยหนึ่งบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(101, UsesEt.TensOnly));
+      Assert.Equal("หนึ่งร้อยสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(111, UsesEt.TensOnly));
+      Assert.Equal("สองร้อยหนึ่งบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(201, UsesEt.TensOnly));
+      Assert.Equal("ห้าพันหนึ่งบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001, UsesEt.TensOnly));
+      Assert.Equal("ห้าพันหนึ่งล้านบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001000000, UsesEt.TensOnly));
+    }
+
+
+    [Fact]
+    public void UsesEt_Always() {
+      Assert.Equal("สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(11, UsesEt.Always));
+      Assert.Equal("ยี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(21, UsesEt.Always));
+      Assert.Equal("สามสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(31, UsesEt.Always));
+      Assert.Equal("เก้าสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(91, UsesEt.Always));
+      Assert.Equal("หนึ่งร้อยเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(101, UsesEt.Always));
+      Assert.Equal("หนึ่งร้อยสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(111, UsesEt.Always));
+      Assert.Equal("สองร้อยเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(201, UsesEt.Always));
+      Assert.Equal("ห้าพันเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001, UsesEt.Always));
+      Assert.Equal("ห้าพันเอ็ดล้านบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001000000, UsesEt.Always));
+    }
+
   }
 }

@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThaiBahtTextUtil.cs" />
+    <Compile Include="UsesEt.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="For References\" />

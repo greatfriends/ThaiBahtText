@@ -8,8 +8,8 @@
     <ProjectGuid>{14ABAEB6-8B47-4294-926E-8C21649F94BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>GFDN.ThaiBahtTextFacts</RootNamespace>
-    <AssemblyName>GFDN.ThaiBahtTextFacts</AssemblyName>
+    <RootNamespace>GreatFriends.ThaiBahtTextFacts</RootNamespace>
+    <AssemblyName>GreatFriends.ThaiBahtTextFacts</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>7e499198</NuGetPackageImportStamp>

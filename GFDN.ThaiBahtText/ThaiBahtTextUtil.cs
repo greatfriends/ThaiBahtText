@@ -26,7 +26,7 @@ namespace GreatFriends.ThaiBahtText {
     /// </summary>
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
-    public static string ThaiBahtText(this decimal? amount) {
+    public static string ThaiBahtText(this decimal? amount, UsesEt mode = UsesEt.TensOnly) {
       if (amount == null) {
         return ThaiBahtText(0m);
       }
@@ -41,7 +41,7 @@ namespace GreatFriends.ThaiBahtText {
     /// </summary>
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
-    public static string ThaiBahtText(this decimal amount) {
+    public static string ThaiBahtText(this decimal amount, UsesEt mode = UsesEt.TensOnly) {
 
       if (amount == 0) {
         return "ศูนย์บาทถ้วน";
