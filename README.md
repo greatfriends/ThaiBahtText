@@ -22,21 +22,23 @@ ThaiBahtText เป็นฟังก์ชั่นที่โปรแกร�
 ## เริมต้นใช้งาน
 1. ติดตั้งผ่าน NuGet
 
-    PM> Install-Package ThaiBahtText
-		
+```
+PM> Install-Package ThaiBahtText
+```	
 
 2. ศึกษาการใช้จากโค้ดตัวอย่างนี้
 
-    using GreatFriends.ThaiBahtText;
-    
-    ...
-    decimal price = 11.50;
-    decimal? total = null;
-    
-    string s01 = price.ThaiBahtText(); // สิบเอ็ดบาทห้าสิบสตางค์ (ใช้ในรูปแบบ extension method)
-    string s02 = total.ThaiBahtText(); // ศูนย์บาทถ้วน
-    string s03 = ThaiBahtTextUtil.ThaiBahtText(total); // หรือใช้ในรูปแบบปกติก็ได้
-		
+```
+using GreatFriends.ThaiBahtText;
+
+...
+decimal price = 11.50;
+decimal? total = null;
+
+string s01 = price.ThaiBahtText(); // สิบเอ็ดบาทห้าสิบสตางค์ (ใช้ในรูปแบบ extension method)
+string s02 = total.ThaiBahtText(); // ศูนย์บาทถ้วน
+string s03 = ThaiBahtTextUtil.ThaiBahtText(total); // หรือใช้ในรูปแบบปกติก็ได้
+```		
 
 
 ## การอ่านค่าหนึ่งในหลักหน่วย
