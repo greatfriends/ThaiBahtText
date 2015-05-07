@@ -15,6 +15,7 @@ nuget pack GFDN.ThaiBahtText.csproj ^
 cd ..
 @ECHO.
 @ECHO Push to GitHub
+git push origin master
 git push origin --tags
 @ECHO.
 @ECHO Push to NuGet
