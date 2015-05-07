@@ -165,11 +165,5 @@ namespace GreatFriends.ThaiBahtTextFacts {
       Assert.Equal("ห้าพันเอ็ดล้านบาทสิบเอ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(5001000000.11m, UsesEt.Always));
     }
 
-    [Fact]
-    public void Bug2501() {
-      Assert.Equal("สองพันห้าร้อยหนึ่งบาทถ้วน", (2501m).ThaiBahtText());
-      Assert.Equal("สองพันห้าร้อยหนึ่งบาทถ้วน", (2501m).ThaiBahtText(UsesEt.TensOnly));
-      Assert.Equal("สองพันห้าร้อยเอ็ดบาทถ้วน", (2501m).ThaiBahtText(UsesEt.Always));
-    }
   }
 }
