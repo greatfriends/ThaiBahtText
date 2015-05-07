@@ -31,7 +31,7 @@ PM> Install-Package ThaiBahtText
 ```
 using GreatFriends.ThaiBahtText;
 
-...
+```
 decimal price = 11.50;
 decimal? total = null;
 
