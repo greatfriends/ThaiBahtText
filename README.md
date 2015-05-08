@@ -67,7 +67,7 @@ string s26 = (1001000000m).ThaiBahtText(UsesEt.Always); // หนึ่งพั
 ```
 
 ## ตารางผลลัพธ์
-Value              | ThaiBahtText(UsesEt.TensOnly) | ThaiBahtText(UsesEt.Always)
-================== | ============================= | ============================
-*null*             | ศูนย์บาทถ้วน                     | ศูนย์บาทถ้วน
-*Empty string*     | ศูนย์บาทถ้วน                     | ศูนย์บาทถ้วน
+| Value              | ThaiBahtText(UsesEt.TensOnly) | ThaiBahtText(UsesEt.Always)   |
+| -------------------| ------------------------------| ----------------------------- |
+| *null*             | ศูนย์บาทถ้วน                     | ศูนย์บาทถ้วน                    | 
+| *Empty string*     | ศูนย์บาทถ้วน                     | ศูนย์บาทถ้วน                    |
