@@ -144,7 +144,10 @@ namespace GreatFriends.ThaiBahtText {
           c = int.Parse(text[i].ToString());
 
           if ((i == length - 1) && (c == 1)) {
-            if (length == 1 || (negative && length == 2)) {
+            if (length == 1                  //  1
+              || (negative && length == 2)   // -1
+              || (length == 2 && lastc == 0) // 01 (satang)
+              ) {
               result += "หนึ่ง";
               return result;
             }
