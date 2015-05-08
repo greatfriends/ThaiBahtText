@@ -164,6 +164,6 @@ namespace GreatFriends.ThaiBahtTextFacts {
       Assert.Equal("ห้าพันหนึ่งล้านบาทสิบเอ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(5001000000.11m, UsesEt.TensOnly));
       Assert.Equal("ห้าพันเอ็ดล้านบาทสิบเอ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(5001000000.11m, UsesEt.Always));
     }
-
+ 
   }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GreatFriends.ThaiBahtText {
   public enum UsesEt {
-    TensOnly,
-    Always
+    TensOnly = 0,
+    Always = 1
   }
 }
