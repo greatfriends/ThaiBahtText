@@ -65,3 +65,9 @@ string s24 = (211m).ThaiBahtText(UsesEt.Always);  // สองร้อยสิ
 string s25 = (1001m).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดบาทถ้วน
 string s26 = (1001000000m).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดล้านบาทถ้วน
 ```
+
+## ตารางผลลัพธ์
+Value              | ThaiBahtText(UsesEt.TensOnly) | ThaiBahtText(UsesEt.Always)
+================== | ============================= | ============================
+*null*             | ศูนย์บาทถ้วน                     | ศูนย์บาทถ้วน
+*Empty string*     | ศูนย์บาทถ้วน                     | ศูนย์บาทถ้วน
