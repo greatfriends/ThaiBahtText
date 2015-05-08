@@ -73,15 +73,15 @@ namespace GreatFriends.ThaiBahtText {
         result.Append(speak(parts[0], mode));
         result.Append("ล้าน");
       }
+      
       if (parts[1].Length > 0) {
         result.Append(speak(parts[1], mode));
         result.Append("บาท");
       }
-      else {
-        if (parts[0].Length > 0) {
-          result.Append("บาท");
-        }
+      else if (parts[0].Length > 0) {
+        result.Append("บาท");
       }
+
       if (parts[2].Length > 0) {
         result.Append(speak(parts[2], mode));
         result.Append("สตางค์");
