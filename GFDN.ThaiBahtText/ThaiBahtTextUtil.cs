@@ -26,7 +26,7 @@ namespace GreatFriends.ThaiBahtText {
     private static string[] thaiPlaces = new string[] { 
       "", "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" 
     };
-    
+
     // Simply the number reading in Thai.
     private static string[] thaiNumbers = new string[] {
       "", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า",  "หก", "เจ็ด", "แปด", "เก้า" 
@@ -39,12 +39,7 @@ namespace GreatFriends.ThaiBahtText {
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal? amount, UsesEt mode = UsesEt.TensOnly) {
-      if (amount == null) {
-        return ThaiBahtText(0m);
-      }
-      else {
-        return ThaiBahtText(amount.Value);
-      }
+      return ThaiBahtText(amount.HasValue ? amount.Value : 0m);
     }
 
 
@@ -72,7 +67,7 @@ namespace GreatFriends.ThaiBahtText {
         amount = -amount;
       }
 
-      var parts = decompose(amount);
+      string[] parts = decompose(amount);
 
       if (parts[0].Length > 0) {
         result.Append(speak(parts[0], mode));
