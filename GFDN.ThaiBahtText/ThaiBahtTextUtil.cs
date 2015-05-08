@@ -13,12 +13,24 @@ namespace GreatFriends.ThaiBahtText {
   /// </summary>
   public static class ThaiBahtTextUtil {
 
-    public static decimal MaxValue = 999999999999.99m;
-    public static decimal MinValue = -999999999999.99m;
+    // Largest acceptable values is 999,999,999,999.99
+    public const decimal MaxValue = 999999999999.99m;
 
-    private static readonly string[] rankThai = { "", "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" };
-    private static readonly string[] digitThai = { "", "หนึ่ง", "สอง", "สาม", "สี่", 
-                                                   "ห้า",  "หก", "เจ็ด", "แปด", "เก้า" };
+    // Smallest acceptable values is -999,999,999,999.99
+    public const decimal MinValue = -999999999999.99m;
+
+    // This array may looks strange. Let's see example:
+    // if value is "512", its length is 3
+    //              ^-----so at hundreds' place will uses thaiPlaces[3] that is Roi.
+    //               ^----at tens' place will be thaiPlaces[2] that is Sib.
+    private static string[] thaiPlaces = new string[] { 
+      "", "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" 
+    };
+    
+    // Simply the number reading in Thai.
+    private static string[] thaiNumbers = new string[] {
+      "", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า",  "หก", "เจ็ด", "แปด", "เก้า" 
+    };
 
 
     /// <summary>
@@ -170,7 +182,7 @@ namespace GreatFriends.ThaiBahtText {
             result += "สิบ";
           }
           else if (c != 0) {
-            result += digitThai[c] + rankThai[length - i];
+            result += thaiNumbers[c] + thaiPlaces[length - i];
           }
         }
         lastc = c;
