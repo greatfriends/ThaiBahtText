@@ -96,38 +96,30 @@ namespace GreatFriends.ThaiBahtText {
 
     private static string[] decompose(decimal amount) {
       string text;
-      string s1;
+      string s1 = string.Empty;
       string s2;
       string s3;
       int position;
 
-      text = amount.ToString("0.00");
+      text = amount.ToString("#.00");
 
       position = text.IndexOf('.');
-      if (position >= 0) {
-        s1 = text.Substring(0, position);
-        s3 = text.Substring(position + 1);
-        if (s3 == "00") {
-          s3 = string.Empty;
-        }
-      }
-      else {
-        s1 = text;
+     
+      s2 = text.Substring(0, position);
+      s3 = text.Substring(position + 1);
+      if (s3 == "00") {
         s3 = string.Empty;
-      }
+      }   
 
-      int length = s1.Length;
+      int length = s2.Length;
       if (length > 6) {
-        s2 = s1.Substring(length - 6);
-        s1 = s1.Substring(0, length - 6);
-      }
-      else {
-        s2 = s1;
-        s1 = string.Empty;
+        s1 = s2.Substring(0, length - 6);
+        s2 = s2.Substring(length - 6);
       }
 
-      if ((s1.Length > 0) && (int.Parse(s1) == 0)) s1 = string.Empty;
-      if ((s2.Length > 0) && (int.Parse(s2) == 0)) s2 = string.Empty;
+      if ((s2.Length > 0) && (int.Parse(s2) == 0)) {
+        s2 = string.Empty;
+      }
 
       return new string[] { s1, s2, s3 };
     }
