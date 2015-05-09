@@ -34,6 +34,8 @@ PM> Update-Package ThaiBahtText
 PM> Uninstall-Package ThaiBahtText
 ```
 
+Nuget Package Page: https://www.nuget.org/packages/ThaiBahtText/
+
 
 ## ตัวเลือก
 เนื่องจากยังไม่สามารถหาข้อสรุปเกี่ยวกับการใช้คำว่า "เอ็ด" ได้ว่า หลักการที่ถูกต้องมีเพียงแบบเดียวหรือไม่
