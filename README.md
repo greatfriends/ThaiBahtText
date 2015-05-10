@@ -4,7 +4,10 @@
 ให้ข้อความจำนวนเงินภาษาไทย เช่น จำนวน 121.50 บาท จะให้ผลลัพธ์เป็น "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
 
 
-## เริ่มต้นใช้งาน (ภาษา C#)
+## เริ่มต้นใช้งาน
+
+ภาษา C#
+
 ```c#
 using GreatFriends.ThaiBahtText;
 
@@ -13,7 +16,7 @@ decimal amount = 121.50m;
 string  s = amount.ThaiBahtText(); // "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
 ```
 
-## เริ่มต้นใช้งาน (ภาษา Visual Basic)
+ภาษา Visual Basic
 
 ```vb
 Imports GreatFriends.ThaiBahtText
@@ -25,13 +28,13 @@ Dim s As String = amount.ThaiBahtText() // "หนึ่งร้อยยี่
 
 ## การติดตั้งและอับเดตเวอร์ชั่นล่าสุด
 
-ติดตั้งผ่าน NuGet (พิมพ์ในวินโดว์ Package Manager Console)
+คลิกเมนู TOOLS ใน Visual Studio เลือก NuGet Package Manager > Package Manager Console
 
 ```
 PM> Install-Package ThaiBahtText
 ```	
 
-การอับเดตให้เป็นเวอร์ชั่นล่าสุด
+ตรวจสอบและอับเดตให้เป็นเวอร์ชั่นล่าสุด
 
 ```
 PM> Update-Package ThaiBahtText
@@ -42,7 +45,7 @@ PM> Update-Package ThaiBahtText
 ```
 PM> Uninstall-Package ThaiBahtText
 ```
-
+ 
 Nuget Package Page: https://www.nuget.org/packages/ThaiBahtText/
 
 
