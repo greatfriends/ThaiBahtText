@@ -13,7 +13,7 @@ using GreatFriends.ThaiBahtText;
 
 ...
 decimal amount = 121.50m;
-string  s = amount.ThaiBahtText(); // "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
+string  s = amount.ThaiBahtText(); // หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์
 ```
 
 ภาษา Visual Basic
@@ -23,7 +23,7 @@ Imports GreatFriends.ThaiBahtText
 
 ...
 Dim amount As Decimal = 121.50D
-Dim s As String = amount.ThaiBahtText() // "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
+Dim s As String = amount.ThaiBahtText() ' หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์
 ```
 
 ## การติดตั้งและอับเดตเวอร์ชั่นล่าสุด
