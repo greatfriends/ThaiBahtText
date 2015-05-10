@@ -13,6 +13,15 @@ decimal amount = 121.50m;
 string  s = amount.ThaiBahtText(); // "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
 ```
 
+## เริ่มต้นใช้งาน (ภาษา Visual Basic .Net)
+
+```
+Imports GreatFriends.ThaiBahtText
+
+...
+Dim amount As Decimal = 120.50D
+Dim s As String = amount.ThaiBahtText() // "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
+```
 
 ## การติดตั้งและอับเดตเวอร์ชั่นล่าสุด
 
