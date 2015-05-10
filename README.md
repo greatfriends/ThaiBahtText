@@ -15,7 +15,7 @@ string  s = amount.ThaiBahtText(); // "หนึ่งร้อยยี่ส�
 
 ## เริ่มต้นใช้งาน (ภาษา Visual Basic .Net)
 
-```
+```vb
 Imports GreatFriends.ThaiBahtText
 
 ...
