@@ -4,7 +4,7 @@
 ให้ข้อความจำนวนเงินภาษาไทย เช่น จำนวน 121.50 บาท จะให้ผลลัพธ์เป็น "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
 
 
-## เริ่มต้นใช้งาน
+## เริ่มต้นใช้งาน (ภาษา C#)
 ```c#
 using GreatFriends.ThaiBahtText;
 
@@ -13,13 +13,13 @@ decimal amount = 121.50m;
 string  s = amount.ThaiBahtText(); // "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
 ```
 
-## เริ่มต้นใช้งาน (ภาษา Visual Basic .Net)
+## เริ่มต้นใช้งาน (ภาษา Visual Basic)
 
 ```vb
 Imports GreatFriends.ThaiBahtText
 
 ...
-Dim amount As Decimal = 120.50D
+Dim amount As Decimal = 121.50D
 Dim s As String = amount.ThaiBahtText() // "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
 ```
 
