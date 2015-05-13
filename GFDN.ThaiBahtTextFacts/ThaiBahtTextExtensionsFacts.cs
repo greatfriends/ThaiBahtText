@@ -39,18 +39,14 @@ namespace GreatFriends.ThaiBahtTextFacts {
     }
 
     [Fact]
-    public void Ed() {
+    public void AbsolutelyEd() {
       Assert.Equal("สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(11));
       Assert.Equal("ยี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(21));
       Assert.Equal("สามสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(31));
       Assert.Equal("สี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(41));
-      Assert.Equal("เก้าสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(91));
-      Assert.Equal("หนึ่งร้อยหนึ่งบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(101));
+      Assert.Equal("เก้าสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(91)); 
       Assert.Equal("หนึ่งร้อยสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(111));
-      Assert.Equal("หนึ่งร้อยยี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(121));
-
-      Assert.Equal("หนึ่งพันหนึ่งบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(1001));
-      Assert.Equal("ห้าพันหนึ่งล้านห้าร้อยบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001000500));
+      Assert.Equal("หนึ่งร้อยยี่สิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(121)); 
     }
 
     [Fact]
@@ -87,6 +83,8 @@ namespace GreatFriends.ThaiBahtTextFacts {
       Assert.Equal("แปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0750m));
       Assert.Equal("เจ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0710m));
       Assert.Equal("แปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(0.0790m));
+      Assert.Equal("หนึ่งบาทถ้วน", (0.995m).ThaiBahtText());
+      Assert.Equal("สองบาทถ้วน", (1.998m).ThaiBahtText());
     }
 
     [Fact]
@@ -96,6 +94,10 @@ namespace GreatFriends.ThaiBahtTextFacts {
       Assert.Equal("ลบแปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0750m));
       Assert.Equal("ลบเจ็ดสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0710m));
       Assert.Equal("ลบแปดสตางค์", ThaiBahtTextUtil.ThaiBahtText(-0.0790m));
+      Assert.Equal("ลบหนึ่งบาทถ้วน", (-0.995m).ThaiBahtText());
+      Assert.Equal("ลบสองบาทถ้วน", (-1.998m).ThaiBahtText());
+
+      Assert.Equal("ลบหนึ่งสตางค์", (-0.009m).ThaiBahtText());
     }
 
     [Fact]
