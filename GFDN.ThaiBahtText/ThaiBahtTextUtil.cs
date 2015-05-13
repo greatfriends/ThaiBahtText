@@ -70,12 +70,12 @@ namespace GreatFriends.ThaiBahtText {
       string[] parts = decompose(amount);
 
       if (parts[0].Length > 0) {
-        result.Append(speak(parts[0], mode));
+        speakTo(result, parts[0], mode);
         result.Append("ล้าน");
       }
       
       if (parts[1].Length > 0) {
-        result.Append(speak(parts[1], mode));
+        speakTo(result, parts[1], mode);
         result.Append("บาท");
       }
       else if (parts[0].Length > 0) {
@@ -83,7 +83,7 @@ namespace GreatFriends.ThaiBahtText {
       }
 
       if (parts[2].Length > 0) {
-        result.Append(speak(parts[2], mode));
+        speakTo(result, parts[2], mode);
         result.Append("สตางค์");
       }
       else {
@@ -125,12 +125,10 @@ namespace GreatFriends.ThaiBahtText {
     }
 
 
-    private static string speak(string text, UsesEt mode) {
+    private static void speakTo(StringBuilder sb, string text, UsesEt mode) {
+      if (string.IsNullOrWhiteSpace(text)) return;
 
-      if (string.IsNullOrWhiteSpace(text)) return string.Empty;
-
-      int length = text.Length;
-      string result = string.Empty;
+      int length = text.Length; 
       int c = 0;
       int lastc = -1;
       bool negative = false;
@@ -147,35 +145,33 @@ namespace GreatFriends.ThaiBahtText {
               || (negative && length == 2)   // -1
               || (length == 2 && lastc == 0) // 01 (satang)
               ) {
-              result += "หนึ่ง";
-              return result;
+              sb.Append("หนึ่ง");
+              return;
             }
             if (mode == UsesEt.Always) {
-              result += "เอ็ด";
+              sb.Append("เอ็ด");
             }
             else if (mode == UsesEt.TensOnly) {
               if (lastc == 0) {
-                result += "หนึ่ง";
+                sb.Append("หนึ่ง");
               }
               else {
-                result += "เอ็ด";
+                sb.Append("เอ็ด");
               }
             }
           }
           else if ((i == length - 2) && (c == 2)) {
-            result += "ยี่สิบ";
+            sb.Append("ยี่สิบ");
           }
           else if ((i == length - 2) && (c == 1)) {
-            result += "สิบ";
+            sb.Append("สิบ");
           }
           else if (c != 0) {
-            result += thaiNumbers[c] + thaiPlaces[length - i];
+            sb.Append(thaiNumbers[c] + thaiPlaces[length - i]);
           }
         }
         lastc = c;
       }
-
-      return result;
     }
 
   }
