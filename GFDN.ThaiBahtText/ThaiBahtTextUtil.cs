@@ -123,7 +123,7 @@ namespace GreatFriends.ThaiBahtText {
 
 
     private static void speakTo(StringBuilder sb, string text, UsesEt mode) {
-      if (string.IsNullOrWhiteSpace(text)) return;
+      if (string.IsNullOrEmpty(text)) return;
 
       int length = text.Length; 
       int c = 0;
