@@ -45,7 +45,7 @@
     <CodeContractsInferRequires>True</CodeContractsInferRequires>
     <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
     <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
-    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
+    <CodeContractsSuggestAssumptions>True</CodeContractsSuggestAssumptions>
     <CodeContractsSuggestRequires>True</CodeContractsSuggestRequires>
     <CodeContractsSuggestObjectInvariants>True</CodeContractsSuggestObjectInvariants>
     <CodeContractsRunInBackground>True</CodeContractsRunInBackground>

@@ -47,6 +47,8 @@ namespace GreatFriends.ThaiBahtText {
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal amount, UsesEt mode = UsesEt.TensOnly) {
+      Contract.Ensures(Contract.Result<string>() != null);
+      Contract.Ensures(Contract.Result<string>().Length > 0);
 
       if (amount == 0) {
         return "ศูนย์บาทถ้วน";
@@ -94,6 +96,7 @@ namespace GreatFriends.ThaiBahtText {
 
     private static string[] decompose(decimal amount) {
       Contract.Ensures(Contract.Result<string[]>().Length == 3);
+
       string text;
       string s1 = string.Empty;
       string s2;
@@ -127,7 +130,6 @@ namespace GreatFriends.ThaiBahtText {
     private static void speakTo(StringBuilder sb, string text, UsesEt mode) {
       Contract.Requires(text != null);
       Contract.Requires(text.Length > 0);
-
 
       int length = text.Length; 
       int c = 0;
