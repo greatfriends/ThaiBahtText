@@ -9,6 +9,7 @@ namespace GreatFriends.ThaiBahtText {
   /// http://greatfriends.biz/webboards/msg.asp?id=5331 (VB.NET)
   /// http://www.greatfriends.biz/webboards/msg.asp?id=5695 (C#)
   /// </summary>
+  [ContractVerification(true)]
   public static class ThaiBahtTextUtil {
 
     // Largest acceptable values is 999,999,999,999.99
@@ -130,7 +131,7 @@ namespace GreatFriends.ThaiBahtText {
     private static void speakTo(StringBuilder sb, string text, UsesEt mode) {
       Contract.Requires(text != null);
       Contract.Requires(text.Length > 0);
-
+      
       int length = text.Length; 
       int c = 0;
       int lastc = -1;
