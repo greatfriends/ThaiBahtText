@@ -22,12 +22,12 @@ namespace GreatFriends.ThaiBahtText {
     //              ^-----so at hundreds' place will uses thaiPlaces[3] that is Roi.
     //               ^----at tens' place will be thaiPlaces[2] that is Sib.
     private static string[] thaiPlaces = new string[] { 
-      "", "", "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" 
+      string.Empty, string.Empty, "สิบ", "ร้อย", "พัน", "หมื่น", "แสน", "ล้าน" 
     };
 
     // Simply the number reading in Thai.
     private static string[] thaiNumbers = new string[] {
-      "", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า",  "หก", "เจ็ด", "แปด", "เก้า" 
+      string.Empty, "หนึ่ง", "สอง", "สาม", "สี่", "ห้า",  "หก", "เจ็ด", "แปด", "เก้า" 
     };
 
 
