@@ -1,4 +1,5 @@
-﻿using System; 
+﻿using System;
+using System.Diagnostics.Contracts;
 using System.Text; 
 
 namespace GreatFriends.ThaiBahtText {
@@ -92,6 +93,7 @@ namespace GreatFriends.ThaiBahtText {
 
 
     private static string[] decompose(decimal amount) {
+      Contract.Ensures(Contract.Result<string[]>().Length == 3);
       string text;
       string s1 = string.Empty;
       string s2;
@@ -123,7 +125,9 @@ namespace GreatFriends.ThaiBahtText {
 
 
     private static void speakTo(StringBuilder sb, string text, UsesEt mode) {
-      if (string.IsNullOrEmpty(text)) return;
+      Contract.Requires(text != null);
+      Contract.Requires(text.Length > 0);
+
 
       int length = text.Length; 
       int c = 0;
