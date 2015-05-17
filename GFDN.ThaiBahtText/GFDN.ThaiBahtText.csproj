@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -44,12 +44,7 @@
     <Compile Include="ThaiBahtTextUtil.cs" />
     <Compile Include="UsesEt.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="For References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="GFDN.ThaiBahtText.nuspec" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
