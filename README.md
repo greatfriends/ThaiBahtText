@@ -1,4 +1,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/gdya3qrey5n3yb12?svg=true)](https://ci.appveyor.com/project/surrealist/thaibahttext)
+[![Nuget Version](https://img.shields.io/nuget/v/ThaiBahtText)]
+[![Nuget Downloads](https://img.shields.io/nuget/dt/ThaiBahtText)]
 
 # ThaiBahtText
 ให้ข้อความจำนวนเงินภาษาไทย เช่น จำนวน 121.50 บาท จะให้ผลลัพธ์เป็น "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
