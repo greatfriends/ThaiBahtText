@@ -1,15 +1,16 @@
 @ECHO OFF
-
-REM GIT Tag and Build nuget package   
+@ECHO ------------------------
+@ECHO GIT TAG AND NUGET PACKER
+@ECHO ------------------------
+@ECHO.
 
 IF "%1" == "" GOTO SyntaxError
-IF "%2" == "" GOTO SyntaxError
 
 REM main code
-git tag -a %1 -m "%2"
+git tag -a "v%1" -m "%1"
 cd GFDN.ThaiBahtText
 nuget pack GFDN.ThaiBahtText.csproj ^
-   -Version %1 ^
+   -Version "%1" ^
 	 -Prop Configuration=Release ^
 	 -OutputDirectory "Nuget Packages"
 cd ..
@@ -23,12 +24,16 @@ nuget push "GFDN.ThaiBahtText\NuGet Packages\ThaiBahtText.%1.nupkg"
 GOTO End
 
 :SyntaxError
-@ECHO Usage syntax:
+@ECHO Usage:
 @ECHO.
-@ECHO nugetpack tag_number tag_name
+@ECHO     nugetpack version
 @ECHO.
-@ECHO Sample: 
-@ECHO   nugetpack 0.1 baby-peter
+@ECHO Sample:
+@ECHO. 
+@ECHO     nugetpack 0.1.2
+@ECHO.
+@ECHO     will create tag 'v0.1.2' 
+@ECHO     and release and nuget package version '0.1.2'
 GOTO End
 
 :End
