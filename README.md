@@ -14,7 +14,7 @@
 using GreatFriends.ThaiBahtText;
 
 ...
-decimal amount = 121.50m;
+decimal amount = 121.50M;
 string  s = amount.ThaiBahtText(); // หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์
 ```
 
@@ -61,13 +61,13 @@ ThaiBahtText(`UsesEt.TensOnly`)
 ใช้เอ็ดเฉพาะกับหลักสิบเท่านั้น (เฉพาะสิบเอ็ดถึงเก้าสิบเอ็ด) ถ้าไม่ระบุจะใช้ตัวเลือกนี้เป็นค่าเริ่มต้น
 
 ```c#
-string s11 = (101m).ThaiBahtText(mode: UsesEt.TensOnly); // หนึ่งร้อย_หนึ่ง_บาทถ้วน
-string s12 = (101m).ThaiBahtText();    // หนึ่งร้อยหนึ่งบาทถ้วน
+string s11 = (101M).ThaiBahtText(mode: UsesEt.TensOnly); // หนึ่งร้อย_หนึ่ง_บาทถ้วน
+string s12 = (101M).ThaiBahtText();    // หนึ่งร้อยหนึ่งบาทถ้วน
 
-string s13 = (11m).ThaiBahtText();     // สิบเอ็ดบาทถ้วน
-string s14 = (211m).ThaiBahtText();    // สองร้อยสิบเอ็ดบาทถ้วน
-string s15 = (1001m).ThaiBahtText(UsesEt.TensOnly); // หนึ่งพันหนึ่งบาทถ้วน
-string s16 = (1001000000m).ThaiBahtText();          // หนึ่งพันหนึ่งล้านบาทถ้วน
+string s13 = (11M).ThaiBahtText();     // สิบเอ็ดบาทถ้วน
+string s14 = (211M).ThaiBahtText();    // สองร้อยสิบเอ็ดบาทถ้วน
+string s15 = (1001M).ThaiBahtText(UsesEt.TensOnly); // หนึ่งพันหนึ่งบาทถ้วน
+string s16 = (1001000000M).ThaiBahtText();          // หนึ่งพันหนึ่งล้านบาทถ้วน
 ```
     
 ### UsesEt.Always
@@ -75,13 +75,13 @@ ThaiBahtText(`UsesEt.Always`)
 ใช้เอ็ดเสมอ สำหรับหลักหน่วยที่มีค่าเป็น 1 รวมถึงหลักล้านที่มีค่าเป็น 1 ด้วย
 
 ```c#
-string s21 = (101m).ThaiBahtText(mode: UsesEt.Always);  // หนึ่งร้อย_เอ็ด_บาทถ้วน
-string s22 = (101m).ThaiBahtText(UsesEt.Always);        // หนึ่งร้อยเอ็ดบาทถ้วน
+string s21 = (101M).ThaiBahtText(mode: UsesEt.Always);  // หนึ่งร้อย_เอ็ด_บาทถ้วน
+string s22 = (101M).ThaiBahtText(UsesEt.Always);        // หนึ่งร้อยเอ็ดบาทถ้วน
     
-string s23 = (11m).ThaiBahtText(UsesEt.Always);   // สิบเอ็ดบาทถ้วน
-string s24 = (211m).ThaiBahtText(UsesEt.Always);  // สองร้อยสิบเอ็ดบาทถ้วน
-string s25 = (1001m).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดบาทถ้วน
-string s26 = (1001000000m).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดล้านบาทถ้วน
+string s23 = (11M).ThaiBahtText(UsesEt.Always);   // สิบเอ็ดบาทถ้วน
+string s24 = (211M).ThaiBahtText(UsesEt.Always);  // สองร้อยสิบเอ็ดบาทถ้วน
+string s25 = (1001M).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดบาทถ้วน
+string s26 = (1001000000M).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดล้านบาทถ้วน
 ```
 
 ## ตารางผลลัพธ์
