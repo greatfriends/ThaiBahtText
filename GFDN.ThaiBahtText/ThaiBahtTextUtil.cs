@@ -12,11 +12,11 @@ namespace GreatFriends.ThaiBahtText {
   [ContractVerification(true)]
   public static class ThaiBahtTextUtil {
 
-    // Largest acceptable values is 999,999,999,999.99
-    public const decimal MaxValue = 999999999999.99m;
+    // Largest acceptable values is 999,999,999,999,999,999.99
+    public const decimal MaxValue = 999999999999999999.99m;
 
-    // Smallest acceptable values is -999,999,999,999.99
-    public const decimal MinValue = -999999999999.99m;
+    // Smallest acceptable values is -999,999,999,999,999,999.99
+    public const decimal MinValue = -999999999999999999.99m;
 
     // This array may looks strange. Let's see example:
     // if value is "512", its length is 3
@@ -38,6 +38,9 @@ namespace GreatFriends.ThaiBahtText {
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal? amount, UsesEt mode = UsesEt.TensOnly) {
+      Contract.Ensures(Contract.Result<string>() != null);
+      Contract.Ensures(Contract.Result<string>().Length > 0);
+
       return ThaiBahtText(amount.HasValue ? amount.Value : 0m);
     }
 
@@ -73,18 +76,23 @@ namespace GreatFriends.ThaiBahtText {
       if (parts[0].Length > 0) {
         speakTo(result, parts[0], mode);
         result.Append("ล้าน");
-      }
-      
+      } 
+
       if (parts[1].Length > 0) {
         speakTo(result, parts[1], mode);
+        result.Append("ล้าน");
+      }
+      
+      if (parts[2].Length > 0) {
+        speakTo(result, parts[2], mode);
         result.Append("บาท");
       }
-      else if (parts[0].Length > 0) {
+      else if (parts[1].Length > 0) {
         result.Append("บาท");
       }
 
-      if (parts[2].Length > 0) {
-        speakTo(result, parts[2], mode);
+      if (parts[3].Length > 0) {
+        speakTo(result, parts[3], mode);
         result.Append("สตางค์");
       }
       else {
@@ -96,35 +104,42 @@ namespace GreatFriends.ThaiBahtText {
 
 
     private static string[] decompose(decimal amount) {
-      Contract.Ensures(Contract.Result<string[]>().Length == 3);
+      Contract.Ensures(Contract.Result<string[]>().Length == 4);
 
       string text;
       string s1 = string.Empty;
-      string s2;
-      string s3;
+      string s2 = string.Empty;  
+      string s3;  
+      string s4;   
       int position;
 
       text = amount.ToString("#.00");
 
       position = text.IndexOf('.');
      
-      s2 = text.Substring(0, position);
-      s3 = text.Substring(position + 1);
-      if (s3 == "00") {
-        s3 = string.Empty;
+      s3 = text.Substring(0, position);
+      s4 = text.Substring(position + 1);
+      if (s4 == "00") {
+        s4 = string.Empty;
       }   
 
-      int length = s2.Length;
+      int length = s3.Length;
+      if (length > 6) {
+        s2 = s3.Substring(0, length - 6);
+        s3 = s3.Substring(length - 6);
+      }
+      
+      length = s2.Length;
       if (length > 6) {
         s1 = s2.Substring(0, length - 6);
         s2 = s2.Substring(length - 6);
       }
 
-      if ((s2.Length > 0) && (int.Parse(s2) == 0)) {
-        s2 = string.Empty;
+      if ((s3.Length > 0) && (int.Parse(s3) == 0)) {
+        s3 = string.Empty;
       }
 
-      return new string[] { s1, s2, s3 };
+      return new string[] { s1, s2, s3, s4 };
     }
 
 
@@ -155,7 +170,7 @@ namespace GreatFriends.ThaiBahtText {
             if (mode == UsesEt.Always) {
               sb.Append("เอ็ด");
             }
-            else if (mode == UsesEt.TensOnly) {
+            else { // if (mode == UsesEt.TensOnly) {
               if (lastc == 0) {
                 sb.Append("หนึ่ง");
               }
