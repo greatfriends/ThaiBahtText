@@ -204,6 +204,7 @@ namespace GreatFriends.ThaiBahtTextFacts {
 
     [Fact]
     public void MillionMillion_Part0And1() {
+      (2525000000000.00m).ThaiBahtText().ShouldEqual("สองล้านห้าแสนสองหมื่นห้าพันล้านบาทถ้วน");
       (25005100000000.00m).ThaiBahtText().ShouldEqual("ยี่สิบห้าล้านห้าพันหนึ่งร้อยล้านบาทถ้วน");
     }
 
