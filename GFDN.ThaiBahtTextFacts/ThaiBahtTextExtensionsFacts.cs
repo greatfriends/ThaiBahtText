@@ -221,5 +221,42 @@ namespace GreatFriends.ThaiBahtTextFacts {
       (-25000000000000.89m).ThaiBahtText().ShouldEqual("ลบยี่สิบห้าล้านล้านบาทแปดสิบเก้าสตางค์");
     }
 
+    [Fact]
+    public void UsingOptions_I() {
+      var price = 11000111.50m;
+      var options = new ThaiBahtTextOptions(UsesEt.TensOnly, Unit.Baht, appendBahtOnly: true);
+
+      var s1 = price.ThaiBahtText(options);
+      var s2 = price.ThaiBahtText(UsesEt.TensOnly, Unit.Baht, appendBahtOnly: true);
+
+      s1.ShouldEqual(s2);
+    }
+
+    [Fact]
+    public void UsingOptions_II() {
+      var price = 11000111.50m;
+      var options = new ThaiBahtTextOptions(UsesEt.Always, Unit.Million, appendBahtOnly: false);
+
+      var s1 = price.ThaiBahtText(options);
+      var s2 = price.ThaiBahtText(UsesEt.Always, Unit.Million, appendBahtOnly: false);
+
+      s1.ShouldEqual(s2);
+    }
+
+    [Fact]
+    public void BahtOnly() {
+      var price = 11000111m;
+      price.ThaiBahtText(appendBahtOnly: true).ShouldEqual("สิบเอ็ดล้านหนึ่งร้อยสิบเอ็ดบาทถ้วน");
+      price.ThaiBahtText(appendBahtOnly: false).ShouldEqual("สิบเอ็ดล้านหนึ่งร้อยสิบเอ็ดบาท");
+
+      price = 50.50m;
+      price.ThaiBahtText(appendBahtOnly: true).ShouldEqual("ห้าสิบบาทห้าสิบสตางค์");
+      price.ThaiBahtText(appendBahtOnly: false).ShouldEqual("ห้าสิบบาทห้าสิบสตางค์");
+    }
+
+    [Fact]
+    public void BahtOnly_Zero() {
+      (0m).ThaiBahtText(appendBahtOnly: false).ShouldEqual("ศูนย์บาท");
+    }
   }
 }

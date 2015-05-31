@@ -10,10 +10,17 @@ namespace GreatFriends.ThaiBahtText {
     public Unit Unit { get; set; }
     public bool AppendBahtOnly { get; set; }
 
-    public ThaiBahtTextOptions() {
-      this.Mode = UsesEt.TensOnly;
-      this.Unit = ThaiBahtText.Unit.Baht;
-      this.AppendBahtOnly = true;
+    public ThaiBahtTextOptions()
+      : this(mode: UsesEt.TensOnly,
+             unit: ThaiBahtText.Unit.Baht,
+             appendBahtOnly: true) {
+      //
+    }
+
+    public ThaiBahtTextOptions(UsesEt mode, Unit unit, bool appendBahtOnly) {
+      this.Mode = mode;
+      this.Unit = unit;
+      this.AppendBahtOnly = appendBahtOnly;
     }
   }
 }

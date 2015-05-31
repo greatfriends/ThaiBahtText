@@ -104,7 +104,12 @@ namespace GreatFriends.ThaiBahtText {
       Contract.Ensures(Contract.Result<string>().Length > 0);
 
       if (amount == 0) {
-        return "ศูนย์บาทถ้วน";
+        if (appendBahtOnly) {
+          return "ศูนย์บาทถ้วน";
+        }
+        else {
+          return "ศูนย์บาท";
+        }
       }
 
       var result = new StringBuilder();
@@ -145,7 +150,9 @@ namespace GreatFriends.ThaiBahtText {
         result.Append("สตางค์");
       }
       else {
-        result.Append("ถ้วน");
+        if (appendBahtOnly) {
+          result.Append("ถ้วน");
+        }
       }
 
       return result.ToString();
