@@ -36,8 +36,14 @@ namespace GreatFriends.ThaiBahtText {
     /// ให้ข้อความจำนวนเงินภาษาไทย เช่น จำนวน 121.50 บาท จะให้ผลลัพธ์เป็น "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
     /// </summary>
     /// <param name="amount">จำนวนเงิน</param>
+    /// <param name="mode">รูปแบบการใช้เอ็ดสำหรับค่าหนึ่งที่หลักหน่วย</param>
+    /// <param name="unit">หน่วยของจำนวนเงิน</param>
+    /// <param name="appendBahtOnly">เพิ่มคำว่า 'ถ้วน' ท้ายข้อความ</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
-    public static string ThaiBahtText(this decimal? amount, UsesEt mode = UsesEt.TensOnly) {
+    public static string ThaiBahtText(this decimal? amount,
+                                      UsesEt mode = UsesEt.TensOnly,
+                                      Unit unit = Unit.Baht,
+                                      bool appendBahtOnly = true) {
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
 
@@ -49,6 +55,9 @@ namespace GreatFriends.ThaiBahtText {
     /// ให้ข้อความจำนวนเงินภาษาไทย เช่น จำนวน 121.50 บาท จะให้ผลลัพธ์เป็น "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
     /// </summary>
     /// <param name="amount">จำนวนเงิน</param>
+    /// <param name="mode">รูปแบบการใช้เอ็ดสำหรับค่าหนึ่งที่หลักหน่วย</param>
+    /// <param name="unit">หน่วยของจำนวนเงิน</param>
+    /// <param name="appendBahtOnly">เพิ่มคำว่า 'ถ้วน' ท้ายข้อความ</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal amount, 
                                       UsesEt mode = UsesEt.TensOnly, 
