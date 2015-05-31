@@ -85,7 +85,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThaiBahtTextOptions.cs" />
     <Compile Include="ThaiBahtTextUtil.cs" />
+    <Compile Include="Unit.cs" />
     <Compile Include="UsesEt.cs" />
   </ItemGroup>
   <ItemGroup />

@@ -50,7 +50,10 @@ namespace GreatFriends.ThaiBahtText {
     /// </summary>
     /// <param name="amount">จำนวนเงิน</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
-    public static string ThaiBahtText(this decimal amount, UsesEt mode = UsesEt.TensOnly) {
+    public static string ThaiBahtText(this decimal amount, 
+                                      UsesEt mode = UsesEt.TensOnly, 
+                                      Unit unit = Unit.Baht, 
+                                      bool appendBahtOnly = true) {
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
 
