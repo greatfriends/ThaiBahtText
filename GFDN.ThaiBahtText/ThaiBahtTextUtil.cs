@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
-using System.Text; 
+using System.Text;
 
 namespace GreatFriends.ThaiBahtText {
 
@@ -40,12 +40,13 @@ namespace GreatFriends.ThaiBahtText {
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal? amount,
                                       ThaiBahtTextOptions options) {
+      Contract.Requires(options != null);
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
 
-      return ThaiBahtText(amount.HasValue ? amount.Value : 0m, 
-                          options.Mode, 
-                          options.Unit, 
+      return ThaiBahtText(amount.HasValue ? amount.Value : 0m,
+                          options.Mode,
+                          options.Unit,
                           options.AppendBahtOnly);
     }
 
@@ -58,6 +59,7 @@ namespace GreatFriends.ThaiBahtText {
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal amount,
                                   ThaiBahtTextOptions options) {
+      Contract.Requires(options != null);
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
 
@@ -94,9 +96,9 @@ namespace GreatFriends.ThaiBahtText {
     /// <param name="unit">หน่วยของจำนวนเงิน</param>
     /// <param name="appendBahtOnly">เพิ่มคำว่า 'ถ้วน' ท้ายข้อความ</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
-    public static string ThaiBahtText(this decimal amount, 
-                                      UsesEt mode = UsesEt.TensOnly, 
-                                      Unit unit = Unit.Baht, 
+    public static string ThaiBahtText(this decimal amount,
+                                      UsesEt mode = UsesEt.TensOnly,
+                                      Unit unit = Unit.Baht,
                                       bool appendBahtOnly = true) {
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
@@ -123,13 +125,13 @@ namespace GreatFriends.ThaiBahtText {
       if (parts[0].Length > 0) {
         speakTo(result, parts[0], mode);
         result.Append("ล้าน");
-      } 
+      }
 
       if (parts[1].Length > 0) {
         speakTo(result, parts[1], mode);
         result.Append("ล้าน");
       }
-      
+
       if (parts[2].Length > 0) {
         speakTo(result, parts[2], mode);
         result.Append("บาท");
@@ -155,27 +157,27 @@ namespace GreatFriends.ThaiBahtText {
 
       string text;
       string s1 = string.Empty;
-      string s2 = string.Empty;  
-      string s3;  
-      string s4;   
+      string s2 = string.Empty;
+      string s3;
+      string s4;
       int position;
 
       text = amount.ToString("#.00");
 
       position = text.IndexOf('.');
-     
+
       s3 = text.Substring(0, position);
       s4 = text.Substring(position + 1);
       if (s4 == "00") {
         s4 = string.Empty;
-      }   
+      }
 
       int length = s3.Length;
       if (length > 6) {
         s2 = s3.Substring(0, length - 6);
         s3 = s3.Substring(length - 6);
       }
-      
+
       length = s2.Length;
       if (length > 6) {
         s1 = s2.Substring(0, length - 6);
@@ -193,8 +195,8 @@ namespace GreatFriends.ThaiBahtText {
     private static void speakTo(StringBuilder sb, string text, UsesEt mode) {
       Contract.Requires(text != null);
       Contract.Requires(text.Length > 0);
-      
-      int length = text.Length; 
+
+      int length = text.Length;
       int c = 0;
       int lastc = -1;
       bool negative = false;
