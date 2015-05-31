@@ -193,7 +193,7 @@ namespace GreatFriends.ThaiBahtTextFacts {
     }
 
     [Fact]
-    public void MillionMillion_Part0() {
+    public void MillionMillion_BillionOnly() {
       (25000000000000m).ThaiBahtText().ShouldEqual("ยี่สิบห้าล้านล้านบาทถ้วน");
     }
 
@@ -203,20 +203,20 @@ namespace GreatFriends.ThaiBahtTextFacts {
     }
 
     [Fact]
-    public void MillionMillion_Part0And1() {
+    public void MillionMillion_BillionAndMillion() {
       (2525000000000.00m).ThaiBahtText().ShouldEqual("สองล้านห้าแสนสองหมื่นห้าพันล้านบาทถ้วน");
       (25005100000000.00m).ThaiBahtText().ShouldEqual("ยี่สิบห้าล้านห้าพันหนึ่งร้อยล้านบาทถ้วน");
     }
 
 
     [Fact]
-    public void MillionMillion_Part0And2() {
+    public void MillionMillion_BillionAndBaht() {
       (25000000000111.00m).ThaiBahtText().ShouldEqual("ยี่สิบห้าล้านล้านหนึ่งร้อยสิบเอ็ดบาทถ้วน");
       (-25000000000111.00m).ThaiBahtText().ShouldEqual("ลบยี่สิบห้าล้านล้านหนึ่งร้อยสิบเอ็ดบาทถ้วน");
     }
 
     [Fact]
-    public void MillionMillion_Part0And3() {
+    public void MillionMillion_BillionAndSatang() {
       (25000000000000.89m).ThaiBahtText().ShouldEqual("ยี่สิบห้าล้านล้านบาทแปดสิบเก้าสตางค์");
       (-25000000000000.89m).ThaiBahtText().ShouldEqual("ลบยี่สิบห้าล้านล้านบาทแปดสิบเก้าสตางค์");
     }
