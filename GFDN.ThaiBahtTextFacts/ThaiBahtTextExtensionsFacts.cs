@@ -338,8 +338,11 @@ namespace GreatFriends.ThaiBahtTextFacts {
 
     [Fact]
     public void Et_WithBigNumbers() {
-      (101000101.11m).ThaiBahtText(unit: Unit.Million).ShouldEqual("หนึ่งร้อยหนึ่งล้านบาท");
-      (101000101.11m).ThaiBahtText(mode: UsesEt.Always, unit: Unit.Million).ShouldEqual("หนึ่งร้อยเอ็ดล้านบาท");
+      (101000101.11m).ThaiBahtText(unit: Unit.Million)
+        .ShouldEqual("หนึ่งร้อยหนึ่งล้านบาท");
+      (101000101.11m).ThaiBahtText(mode: UsesEt.Always, unit: Unit.Million)
+        .ShouldEqual("หนึ่งร้อยเอ็ดล้านบาท");
     }
+
   }
 }

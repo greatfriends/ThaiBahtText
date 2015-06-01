@@ -59,7 +59,7 @@ namespace GreatFriends.ThaiBahtText {
     /// <param name="options">ตัวเลือก</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal amount,
-                                  ThaiBahtTextOptions options) {
+                                      ThaiBahtTextOptions options) {
       Contract.Requires(options != null);
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
