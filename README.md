@@ -53,9 +53,22 @@ Nuget Package Page: https://www.nuget.org/packages/ThaiBahtText/
 
 
 ## ตัวเลือก
-เนื่องจากยังไม่สามารถหาข้อสรุปเกี่ยวกับการใช้คำว่า "เอ็ด" ได้ว่า หลักการที่ถูกต้องมีเพียงแบบเดียวหรือไม่
-(จะดำเนินการสอบถามไปยังราชบัณฑิตต่อไป) จึงให้สามารถเลือกใช้ได้ตามต้องการ 2 รูปแบบต่อไปนี้
-โดยส่งค่า enum `UsesEt` ให้กับพารามิเตอร์ `mode` ของเมธอด `ThaiBahtText`
+ฟังก์ชั่น ThaiBahtText มี overloads ดังนี้
+
+1. _amount_.**ThaiBahtText**(**UsesEt** mode, **Unit** unit, int decimalPlaces, bool includeBahtOnly);
+2. _amount_.**ThaiBahtText**(**ThaiBahtTextOptions** options);
+
+โดยที่ _amount_ อาจจะเป็น `decimal` หรือ `decimal?` ก็ได้
+
+คลาส `ThaiBahtTextOptions` ใช้เพื่อส่งค่าตัวเลือกได้สะดวกขึ้น โดยมี properties ดังนี้
+
+Property | Type     |Description
+---------| ---------|---------------
+UsesEt   | enum     | การใช้เอ็ดเมื่อมีค่าหนึ่งในหลักหน่วย กำหนดค่าเป็น `UsesEt.TensOnly` (เป็นค่าเริ่มต้น) เมื่อต้องการใช้เอ็ดในหลักสิบเท่านั้น และ  `UsesEt.Always` เมื่อต้องการใช้เอ็ดเสมอ
+Unit     | enum     | กำหนดหน่วยของข้อความที่ต้องการว่า จะเป็น `Unit.Baht` บาท (เป็นค่าเริ่มต้น) `Unit.Million` ล้านบาท `Unit.Billion` พันล้านบาท หรือ `Unit.Trillion` ล้านล้านบาท
+DecimalPlaces | int | จำนวนหน่วยทศนิยม (มีค่าเริ่มต้นเป็น 2) จะถูกนำไปใช้ก็ต่อเมื่อ Unit มีค่าไม่เท่ากับ `Unit.Baht`
+appendBahtOnly | bool | เพิ่มคำว่าถ้วนหรือไม่ (มีค่าเริ่มต้นเป็น true) 
+ 
 
 ### UsesEt.TensOnly
 ThaiBahtText(`UsesEt.TensOnly`)
@@ -83,6 +96,16 @@ string s23 = (11M).ThaiBahtText(UsesEt.Always);   // สิบเอ็ดบา
 string s24 = (211M).ThaiBahtText(UsesEt.Always);  // สองร้อยสิบเอ็ดบาทถ้วน
 string s25 = (1001M).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดบาทถ้วน
 string s26 = (1001000000M).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดล้านบาทถ้วน
+```
+
+### หน่วยของจำนวนเงิน
+ค่าเริ่มต้นเป็น บาท แต่สามารถเปลี่ยนข้อความผลลัพธ์เป็นหน่วยอื่นได้ เช่น
+```C#
+var million = new ThaiBahtTextOptions(Unit.Million, appendBahtOnly: false);
+var billion = new ThaiBahtTextOptions(Unit.Billion, appendBahtOnly: false);
+
+var s1 = (123456000m).ThaiBahtText(million); // หนึ่งร้อยยี่สิบสามจุดสี่หกล้านบาท
+var s2 = (123456000m).ThaiBahtText(billion); // ศูนย์จุดหนึ่งสองพันล้านบาท
 ```
 
 ## ตารางผลลัพธ์
