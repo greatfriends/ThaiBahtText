@@ -305,12 +305,17 @@ namespace GreatFriends.ThaiBahtTextFacts {
 
     [Fact]
     public void BigZero() {
-      (0m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false).ShouldEqual("ศูนย์ล้านบาท");
-      (0m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false).ShouldEqual("ศูนย์พันล้านบาท");
-      (0m).ThaiBahtText(unit: Unit.Trillion, appendBahtOnly: false).ShouldEqual("ศูนย์ล้านล้านบาท");
+      (0m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false)
+        .ShouldEqual("ศูนย์ล้านบาท");
+      (0m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false)
+        .ShouldEqual("ศูนย์พันล้านบาท");
+      (0m).ThaiBahtText(unit: Unit.Trillion, appendBahtOnly: false)
+        .ShouldEqual("ศูนย์ล้านล้านบาท");
 
-      (5000000m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false).ShouldEqual("ห้าล้านบาท");
-      (5000000m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false).ShouldEqual("จุดศูนย์หนึ่งพันล้านบาท");
+      (5000000m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false)
+        .ShouldEqual("ห้าล้านบาท");
+      (5000000m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false)
+        .ShouldEqual("จุดศูนย์หนึ่งพันล้านบาท");
       (5000000m).ThaiBahtText(unit: Unit.Billion, decimalPlaces: 4,
         appendBahtOnly: false).ShouldEqual("จุดศูนย์ศูนย์ห้าพันล้านบาท");
     }
@@ -340,7 +345,7 @@ namespace GreatFriends.ThaiBahtTextFacts {
     public void Et_WithBigNumbers() {
       (101000101.11m).ThaiBahtText(unit: Unit.Million)
         .ShouldEqual("หนึ่งร้อยหนึ่งล้านบาท");
-      (101000101.11m).ThaiBahtText(mode: UsesEt.Always, unit: Unit.Million)
+      (101000101.11m).ThaiBahtText(usesEt: UsesEt.Always, unit: Unit.Million)
         .ShouldEqual("หนึ่งร้อยเอ็ดล้านบาท");
     }
 
