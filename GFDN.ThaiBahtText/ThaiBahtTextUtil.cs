@@ -204,6 +204,7 @@ namespace GreatFriends.ThaiBahtText {
     }
 
     private static string[] decompose(string text) {
+      Contract.Requires(text != null);
       Contract.Ensures(Contract.Result<string[]>().Length == 4);
 
       string s1 = string.Empty;
@@ -241,6 +242,9 @@ namespace GreatFriends.ThaiBahtText {
 
 
     private static void speakDotTo(StringBuilder sb, string text) {
+      Contract.Requires(sb != null);
+      Contract.Requires(text != null);
+
       sb.Append("จุด");
       for (int i = 0; i < text.Length; i++) {
         int c = int.Parse(text[i].ToString());
