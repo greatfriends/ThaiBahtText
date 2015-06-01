@@ -1,7 +1,9 @@
 version: 1.0.{build}
+configuration: Release
 before_build:
 - nuget restore
 build:
+  publish_nuget: true
   verbosity: minimal
 artifacts:
 - path: GFDN.ThaiBahtText\bin\Release\GreatFriends.ThaiBahtText.dll
