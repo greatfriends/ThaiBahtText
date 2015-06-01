@@ -3,3 +3,6 @@ before_build:
 - nuget restore
 build:
   verbosity: minimal
+artifacts:
+- path: GFDN.ThaiBahtText\bin\Release\GreatFriends.ThaiBahtText.dll
+  name: DLL File
