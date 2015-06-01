@@ -28,7 +28,7 @@ namespace GreatFriends.ThaiBahtText {
 
     // Simply the number reading in Thai.
     private static string[] thaiNumbers = new string[] {
-      string.Empty, "หนึ่ง", "สอง", "สาม", "สี่", "ห้า",  "หก", "เจ็ด", "แปด", "เก้า" 
+      "ศูนย์", "หนึ่ง", "สอง", "สาม", "สี่", "ห้า",  "หก", "เจ็ด", "แปด", "เก้า" 
     };
 
 
@@ -47,6 +47,7 @@ namespace GreatFriends.ThaiBahtText {
       return ThaiBahtText(amount.HasValue ? amount.Value : 0m,
                           options.Mode,
                           options.Unit,
+                          options.DecimalPlaces,
                           options.AppendBahtOnly);
     }
 
@@ -66,6 +67,7 @@ namespace GreatFriends.ThaiBahtText {
       return ThaiBahtText(amount,
                           options.Mode,
                           options.Unit,
+                          options.DecimalPlaces,
                           options.AppendBahtOnly);
     }
 
@@ -80,6 +82,7 @@ namespace GreatFriends.ThaiBahtText {
     public static string ThaiBahtText(this decimal? amount,
                                       UsesEt mode = UsesEt.TensOnly,
                                       Unit unit = Unit.Baht,
+                                      int decimalPlaces = 2,
                                       bool appendBahtOnly = true) {
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
@@ -99,22 +102,51 @@ namespace GreatFriends.ThaiBahtText {
     public static string ThaiBahtText(this decimal amount,
                                       UsesEt mode = UsesEt.TensOnly,
                                       Unit unit = Unit.Baht,
+                                      int decimalPlaces = 2,
                                       bool appendBahtOnly = true) {
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
 
-      if (amount == 0) {
-        if (appendBahtOnly) {
-          return "ศูนย์บาทถ้วน";
-        }
-        else {
-          return "ศูนย์บาท";
-        }
-      }
-
       var result = new StringBuilder();
 
-      amount = Math.Round(amount, 2, MidpointRounding.AwayFromZero);
+      if (amount == 0) {
+        switch (unit) {
+          case Unit.Baht: result.Append("ศูนย์บาท"); break;
+          case Unit.Million: result.Append("ศูนย์ล้านบาท"); break;
+          case Unit.Billion: result.Append("ศูนย์พันล้านบาท"); break;
+          case Unit.Trillion: result.Append("ศูนย์ล้านล้านบาท"); break;
+        }
+        if (appendBahtOnly) {
+          result.Append("ถ้วน");
+        }
+
+        return result.ToString();
+      }
+
+      string format = "#.00";
+      bool isBaht = unit == Unit.Baht;
+
+      if (!isBaht) {
+        switch (unit) {
+          case Unit.Million: amount /= 1000000.0m; break;
+          case Unit.Billion: amount /= 1000000000.0m; break;
+          case Unit.Trillion: amount /= 1000000000000.0m; break;
+        }
+        switch (decimalPlaces) {
+          case 0: format = "0.0"; break; // we still need satang
+          case 1: format = "0.0"; break;
+          case 2: format = "0.0#"; break;
+          case 3: format = "0.0##"; break;
+          case 4: format = "0.0###"; break;
+          case 5: format = "0.0####"; break;
+          default: format = "0.0#####"; break;
+        }
+      }
+      else {
+        decimalPlaces = 2; // always 2 for unit Baht
+      }
+
+      amount = Math.Round(amount, decimalPlaces, MidpointRounding.AwayFromZero);
 
       if (amount < MinValue || MaxValue < amount) {
         throw new NotSupportedException();
@@ -125,7 +157,8 @@ namespace GreatFriends.ThaiBahtText {
         amount = -amount;
       }
 
-      string[] parts = decompose(amount);
+      string text = amount.ToString(format);
+      string[] parts = decompose(text);
 
       if (parts[0].Length > 0) {
         speakTo(result, parts[0], mode);
@@ -139,15 +172,27 @@ namespace GreatFriends.ThaiBahtText {
 
       if (parts[2].Length > 0) {
         speakTo(result, parts[2], mode);
-        result.Append("บาท");
+        if (isBaht) result.Append("บาท");
       }
       else if (parts[1].Length > 0) {
-        result.Append("บาท");
+        if (isBaht) result.Append("บาท");
       }
 
       if (parts[3].Length > 0) {
-        speakTo(result, parts[3], mode);
-        result.Append("สตางค์");
+        if (isBaht) {
+          speakTo(result, parts[3], mode);
+          result.Append("สตางค์");
+        }
+        else {
+          if (int.Parse(parts[3]) != 0) {
+            speakDotTo(result, parts[3]);
+          }
+          switch (unit) {
+            case Unit.Million: result.Append("ล้านบาท"); break;
+            case Unit.Billion: result.Append("พันล้านบาท"); break;
+            case Unit.Trillion: result.Append("ล้านล้านบาท"); break;
+          }
+        }
       }
       else {
         if (appendBahtOnly) {
@@ -158,18 +203,14 @@ namespace GreatFriends.ThaiBahtText {
       return result.ToString();
     }
 
-
-    private static string[] decompose(decimal amount) {
+    private static string[] decompose(string text) {
       Contract.Ensures(Contract.Result<string[]>().Length == 4);
 
-      string text;
       string s1 = string.Empty;
       string s2 = string.Empty;
       string s3;
       string s4;
       int position;
-
-      text = amount.ToString("#.00");
 
       position = text.IndexOf('.');
 
@@ -198,6 +239,14 @@ namespace GreatFriends.ThaiBahtText {
       return new string[] { s1, s2, s3, s4 };
     }
 
+
+    private static void speakDotTo(StringBuilder sb, string text) {
+      sb.Append("จุด");
+      for (int i = 0; i < text.Length; i++) {
+        int c = int.Parse(text[i].ToString());
+        sb.Append(thaiNumbers[c]);
+      }
+    }
 
     private static void speakTo(StringBuilder sb, string text, UsesEt mode) {
       Contract.Requires(text != null);

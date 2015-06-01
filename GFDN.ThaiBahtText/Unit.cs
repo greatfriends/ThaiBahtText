@@ -14,12 +14,7 @@ namespace GreatFriends.ThaiBahtText {
     /// จำนวนเงินมีหน่วยเป็น บาท
     /// </summary>
     Baht,
-
-    /// <summary>
-    /// จำนวนเงินมีหน่วยเป็น พันบาท
-    /// </summary>
-    Thousand,
-
+     
     /// <summary>
     /// จำนวนเงินมีหน่วยเป็น ล้านบาท
     /// </summary>

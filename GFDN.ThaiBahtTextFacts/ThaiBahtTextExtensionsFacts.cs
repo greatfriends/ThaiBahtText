@@ -6,7 +6,7 @@ using Xunit;
 namespace GreatFriends.ThaiBahtTextFacts {
 
   public class ThaiBahtTextExtensionsFacts {
-    
+
     [Fact]
     public void OneToTen() {
       (1M).ThaiBahtText().ShouldEqual("หนึ่งบาทถ้วน");
@@ -115,7 +115,7 @@ namespace GreatFriends.ThaiBahtTextFacts {
     public void ExtremeValues() {
       Assert.Throws<NotSupportedException>(() => {
         var s = ThaiBahtTextUtil.ThaiBahtText(5000000000000000000m);
-      }); 
+      });
     }
 
     [Fact]
@@ -137,9 +137,9 @@ namespace GreatFriends.ThaiBahtTextFacts {
 
     [Fact]
     public void MinAndMaxValues() {
-      Assert.Equal("เก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าบาทเก้าสิบเก้าสตางค์", 
+      Assert.Equal("เก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าบาทเก้าสิบเก้าสตางค์",
         ThaiBahtTextUtil.MaxValue.ThaiBahtText());
-      Assert.Equal("ลบเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าบาทเก้าสิบเก้าสตางค์", 
+      Assert.Equal("ลบเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าล้านเก้าแสนเก้าหมื่นเก้าพันเก้าร้อยเก้าสิบเก้าบาทเก้าสิบเก้าสตางค์",
         ThaiBahtTextUtil.MinValue.ThaiBahtText());
     }
 
@@ -185,7 +185,7 @@ namespace GreatFriends.ThaiBahtTextFacts {
       (5001000000.11M).ThaiBahtText(UsesEt.TensOnly).ShouldEqual("ห้าพันหนึ่งล้านบาทสิบเอ็ดสตางค์");
       (5001000000.11M).ThaiBahtText(UsesEt.Always).ShouldEqual("ห้าพันเอ็ดล้านบาทสิบเอ็ดสตางค์");
     }
- 
+
     [Fact]
     public void BUG_Issue19_OneStangWithEtAlways_ShouldNotGiven_EtSatang() {
       (0.01M).ThaiBahtText(UsesEt.Always).ShouldEqual("หนึ่งสตางค์");
@@ -257,6 +257,89 @@ namespace GreatFriends.ThaiBahtTextFacts {
     [Fact]
     public void BahtOnly_Zero() {
       (0m).ThaiBahtText(appendBahtOnly: false).ShouldEqual("ศูนย์บาท");
+    }
+
+    [Fact]
+    public void DecimalPlacesIsIgnoredWhenUnitIsBahtAndAlwaysIsEqualToTwo() {
+      var price = 12.345m;
+
+      price.ThaiBahtText(unit: Unit.Baht, decimalPlaces: 1).ShouldEqual("สิบสองบาทสามสิบห้าสตางค์");
+    }
+
+    [Fact]
+    public void Unit_Million() {
+      (12345600.00m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false)
+        .ShouldEqual("สิบสองจุดสามห้าล้านบาท");
+      (8500000m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false)
+        .ShouldEqual("แปดจุดห้าล้านบาท");
+      (111200000m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false)
+        .ShouldEqual("หนึ่งร้อยสิบเอ็ดจุดสองล้านบาท");
+      (9000000m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false)
+        .ShouldEqual("เก้าล้านบาท");
+    }
+
+    [Fact]
+    public void Unit_Billion() {
+      (12345600000.00m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false)
+        .ShouldEqual("สิบสองจุดสามห้าพันล้านบาท");
+      (8500000000m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false)
+        .ShouldEqual("แปดจุดห้าพันล้านบาท");
+      (111200000000m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false)
+        .ShouldEqual("หนึ่งร้อยสิบเอ็ดจุดสองพันล้านบาท");
+      (9000000000m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false)
+        .ShouldEqual("เก้าพันล้านบาท");
+    }
+
+
+    [Fact]
+    public void Unit_Trillion() {
+      (12345600000000.00m).ThaiBahtText(unit: Unit.Trillion, appendBahtOnly: false)
+        .ShouldEqual("สิบสองจุดสามห้าล้านล้านบาท");
+      (8500000000000m).ThaiBahtText(unit: Unit.Trillion, appendBahtOnly: false)
+        .ShouldEqual("แปดจุดห้าล้านล้านบาท");
+      (111200000000000m).ThaiBahtText(unit: Unit.Trillion, appendBahtOnly: false)
+        .ShouldEqual("หนึ่งร้อยสิบเอ็ดจุดสองล้านล้านบาท");
+      (9000000000000m).ThaiBahtText(unit: Unit.Trillion, appendBahtOnly: false)
+        .ShouldEqual("เก้าล้านล้านบาท");
+    }
+
+    [Fact]
+    public void BigZero() {
+      (0m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false).ShouldEqual("ศูนย์ล้านบาท");
+      (0m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false).ShouldEqual("ศูนย์พันล้านบาท");
+      (0m).ThaiBahtText(unit: Unit.Trillion, appendBahtOnly: false).ShouldEqual("ศูนย์ล้านล้านบาท");
+
+      (5000000m).ThaiBahtText(unit: Unit.Million, appendBahtOnly: false).ShouldEqual("ห้าล้านบาท");
+      (5000000m).ThaiBahtText(unit: Unit.Billion, appendBahtOnly: false).ShouldEqual("จุดศูนย์หนึ่งพันล้านบาท");
+      (5000000m).ThaiBahtText(unit: Unit.Billion, decimalPlaces: 4,
+        appendBahtOnly: false).ShouldEqual("จุดศูนย์ศูนย์ห้าพันล้านบาท");
+    }
+
+
+    [Fact]
+    public void Unit_DecimalPlaces1() {
+      (12345600.00m).ThaiBahtText(unit: Unit.Million, decimalPlaces: 1, appendBahtOnly: false)
+        .ShouldEqual("สิบสองจุดสามล้านบาท");
+      (8500000m).ThaiBahtText(unit: Unit.Million, decimalPlaces: 1, appendBahtOnly: false)
+        .ShouldEqual("แปดจุดห้าล้านบาท");
+      (111200000m).ThaiBahtText(unit: Unit.Million, decimalPlaces: 1, appendBahtOnly: false)
+        .ShouldEqual("หนึ่งร้อยสิบเอ็ดจุดสองล้านบาท");
+    }
+
+    [Fact]
+    public void Unit_DecimalPlaces4() {
+      (12345600.00m).ThaiBahtText(unit: Unit.Million, decimalPlaces: 4, appendBahtOnly: false)
+        .ShouldEqual("สิบสองจุดสามสี่ห้าหกล้านบาท");
+      (8500000m).ThaiBahtText(unit: Unit.Million, decimalPlaces: 4, appendBahtOnly: false)
+        .ShouldEqual("แปดจุดห้าล้านบาท");
+      (111200000m).ThaiBahtText(unit: Unit.Million, decimalPlaces: 4, appendBahtOnly: false)
+        .ShouldEqual("หนึ่งร้อยสิบเอ็ดจุดสองล้านบาท");
+    }
+
+    [Fact]
+    public void Et_WithBigNumbers() {
+      (101000101.11m).ThaiBahtText(unit: Unit.Million).ShouldEqual("หนึ่งร้อยหนึ่งล้านบาท");
+      (101000101.11m).ThaiBahtText(mode: UsesEt.Always, unit: Unit.Million).ShouldEqual("หนึ่งร้อยเอ็ดล้านบาท");
     }
   }
 }
