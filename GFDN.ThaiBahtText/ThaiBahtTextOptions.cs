@@ -14,15 +14,15 @@ namespace GreatFriends.ThaiBahtText {
     public ThaiBahtTextOptions()
       : this(mode: UsesEt.TensOnly,
              unit: ThaiBahtText.Unit.Baht,
-             appendBahtOnly: true,
-             decimalPlaces: 2) {
+             decimalPlaces: 2,
+             appendBahtOnly: true) {
       //
     }
 
     public ThaiBahtTextOptions(UsesEt mode = UsesEt.TensOnly,
                                Unit unit = Unit.Baht,
-                               bool appendBahtOnly = true,
-                               int decimalPlaces = 2) {
+                               int decimalPlaces = 2,
+                               bool appendBahtOnly = true) {
       this.Mode = mode;
       this.Unit = unit;
       this.AppendBahtOnly = appendBahtOnly;
