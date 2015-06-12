@@ -1,8 +1,5 @@
 version: 1.0.{build}
 configuration: Release
-environment:
-  COVERALLS_REPO_TOKEN:
-    secure: eDQwdQTXfuHz4C9TTshI1oz6nXANBLbHU
 before_build:
 - nuget restore ".\ThaiBahtText.sln"
 build:
@@ -11,9 +8,3 @@ build:
 artifacts:
 - path: GFDN.ThaiBahtText\bin\Release\GreatFriends.ThaiBahtText.dll
   name: DLL File
-test_script:
-- ps: >-
-    
-    .\packages\OpenCover.4.5.3723\OpenCover.Console.exe -register:user -target:xunit.console.x86.exe "-targetargs:""GFDN.ThaiBahtTextFacts\bin\$env:CONFIGURATION\GreatFriends.ThaiBahtTextFacts.dll"" /noshadow /appveyor" -output:opencoverCoverage.xml
-    
-    .\packages\coveralls.net.0.5.0\csmacnz.Coveralls.exe --opencover -i opencoverCoverage.xml --repoToken $env:COVERALLS_REPO_TOKEN --commitId $env:APPVEYOR_REPO_COMMIT --commitBranch $env:APPVEYOR_REPO_BRANCH --commitAuthor $env:APPVEYOR_REPO_COMMIT_AUTHOR --commitEmail $env:APPVEYOR_REPO_COMMIT_AUTHOR_EMAIL --commitMessage $env:APPVEYOR_REPO_COMMIT_MESSAGE --jobId $env:APPVEYOR_JOB_ID
