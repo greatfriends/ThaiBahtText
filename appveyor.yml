@@ -4,8 +4,9 @@ environment:
   COVERALLS_REPO_TOKEN:
     secure: eDQwdQTXfuHz4C9TTshI1oz6nXANBLbHU
 before_build:
-- nuget restore
+- nuget restore ".\ThaiBahtText.sln"
 build:
+  project: .\ThaiBahtText.sln
   verbosity: minimal
 artifacts:
 - path: GFDN.ThaiBahtText\bin\Release\GreatFriends.ThaiBahtText.dll
