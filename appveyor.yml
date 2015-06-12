@@ -1,5 +1,8 @@
 version: 1.0.{build}
 configuration: Release
+environment:
+  COVERALLS_REPO_TOKEN:
+    secure: eDQwdQTXfuHz4C9TTshI1oz6nXANBLbHU
 before_build:
 - nuget restore
 build:
