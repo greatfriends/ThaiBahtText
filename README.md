@@ -19,7 +19,7 @@ decimal amount = 121.50M;
 string  s = amount.ThaiBahtText(); // หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์
 ```
 
-ภาษา Visual Basic
+ภาษา Visual Basic .NET
 
 ```vb
 Imports GreatFriends.ThaiBahtText
