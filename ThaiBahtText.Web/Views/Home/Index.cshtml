@@ -1,0 +1,95 @@
+﻿
+<div class="row">
+  <div class="col-sm-6">
+    @interactiveBox()
+  </div>
+  <div class="col-sm-6">
+    @codeBox()
+  </div>
+</div>
+
+@helper codeBox() {
+  <div class="row">
+    <div class="codeBox col-sm-12">
+      1. ติดตั้ง <code>ThaiBahtText</code> ในโปรเจ็กต์ ด้วย NuGet
+
+      <pre class="console">PM> Install-Package ThaiBahtText</pre>
+
+      2. เพิ่มประโยคอิมพอร์ตเนมสเปซ
+      <pre>// C#
+using <b class="text">GreatFriends.ThaiBahtText</b>;</pre> 
+<pre>'' VB
+Imports <b class="text">GreatFriends.ThaiBahtText</b>  
+</pre>
+
+      3. โค้ดตัวอย่างการใช้งาน
+      <pre>// C#
+decimal? amount = <span class="text-danger amountInCode"></span>;
+string text = amount.<b>ThaiBahtText()</b>;</pre>
+<pre>'' VB
+Dim amount As Decimal? = <span class="text-danger amountInVB"></span>
+Dim text As String 
+text = amount.<b>ThaiBahtText()</b>
+</pre>
+    </div>
+  </div>
+}
+
+<style> 
+
+  pre {
+    margin-top: 5px;
+  }
+
+    pre.console {
+      background-color: black;
+      color: lightblue;
+    }
+</style>
+@helper interactiveBox() {
+  <div class="row">
+    <div class="col-xs-4">
+      <input type="number"
+             class="form-control"
+             style="width: 100% !important; margin-top: 10px;margin-bottom: 30px;"
+             id="amount" value="23.21">
+    </div>
+    <div class="col-xs-8"></div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 text-center" style="padding-bottom: 0px;">
+      <div class="well">
+        <h4 id="amountText" style="margin: 3px 0px 10px 0px;"
+            class="text-danger"></h4>
+        <h3 id="bahtText" style="margin: 3px 0px 0px 0px;"></h3>
+      </div>
+    </div>
+  </div>
+}
+
+@section scripts {
+  <script>
+    fn1();
+    $("#amount").keyup(fn1);
+    $("#amount").change(fn1);
+
+    function fn1() {
+      var val = $("#amount").val().toString();
+      var url = "@Url.Action("ToThaiBahtText")";
+      var data = { amount: val };
+
+      $.post(url, data).success(function (result) {
+        if (val === '') {
+          $(".amountInCode").text('null');
+          $(".amountInVB").text('Nothing')
+        } else {
+          $(".amountInCode").text(val + 'm');
+          $(".amountInVB").text(val + 'D');
+        }
+        $("#amountText").text(result.AmountText);
+        $("#bahtText").text(result.ThaiBahtText);
+      });
+    }
+  </script>
+}
