@@ -20,12 +20,12 @@ namespace ThaiBahtText.Web {
                 "~/Scripts/bootstrap.js",
                 "~/Scripts/respond.js"));
 
-      bundles.Add(new StyleBundle("~/Content/css").Include(
+      bundles.Add(new StyleBundle("~/Styles/css").Include(
                 "~/Content/bootstrap.css",
-                // "~/Content/css/font-awesome.css",
+                "~/Content/font-awesome.css",
                 "~/Content/site.css"));
 
-      BundleTable.EnableOptimizations = false;
+      BundleTable.EnableOptimizations = true;
     }
   }
 }
