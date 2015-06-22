@@ -5,11 +5,17 @@ using System.Web;
 using System.Web.Mvc;
 
 using GreatFriends.ThaiBahtText;
+using System.Reflection;
 
 namespace ThaiBahtText.Web.Controllers {
   public class HomeController : Controller {
 
     public ActionResult Index() {
+      string p = Server.MapPath("~/bin/GreatFriends.ThaiBahtText.dll");
+      Assembly asm = Assembly.LoadFrom(p);
+      Version ver = asm.GetName().Version;
+
+      ViewBag.Version = ver;
       ViewBag.Min = ThaiBahtTextUtil.MinValue;
       ViewBag.Max = ThaiBahtTextUtil.MaxValue;
       return View();
