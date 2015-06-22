@@ -81,7 +81,7 @@ text = amount.<b>ThaiBahtText()</b>
   <script>
     $("#generate").click(function () {
       // var amt = chance.integer({ min: @ViewBag.Min, max: @ViewBag.Max});
-      var amt = chance.integer({ min: -9999999999, max: 9999999999 }) / 100.0;
+      var amt = chance.integer({ min: -999999, max: 999999 }) / 100.0;
       $("#amount").val(amt).change();
 
     })
