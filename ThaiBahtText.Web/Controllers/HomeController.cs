@@ -10,6 +10,8 @@ namespace ThaiBahtText.Web.Controllers {
   public class HomeController : Controller {
 
     public ActionResult Index() {
+      ViewBag.Min = ThaiBahtTextUtil.MinValue;
+      ViewBag.Max = ThaiBahtTextUtil.MaxValue;
       return View();
     }
 

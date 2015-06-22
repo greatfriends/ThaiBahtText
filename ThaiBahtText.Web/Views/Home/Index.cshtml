@@ -18,7 +18,7 @@
 
       2. เพิ่มประโยคอิมพอร์ตเนมสเปซ
       <pre>// C#
-using <b class="text">GreatFriends.ThaiBahtText</b>;</pre> 
+using <b class="text">GreatFriends.ThaiBahtText</b>;</pre>
 <pre>'' VB
 Imports <b class="text">GreatFriends.ThaiBahtText</b>  
 </pre>
@@ -36,8 +36,7 @@ text = amount.<b>ThaiBahtText()</b>
   </div>
 }
 
-<style> 
-
+<style>
   pre {
     margin-top: 5px;
   }
@@ -51,10 +50,17 @@ text = amount.<b>ThaiBahtText()</b>
 @helper interactiveBox() {
   <div class="row">
     <div class="col-xs-12 col-sm-4">
-      <input type="number"
-             class="form-control"
-             style="width: 100% !important; margin-top: 10px;margin-bottom: 30px;"
-             id="amount" value="0">
+      <div class="input-group" style=" margin-top: 10px; margin-bottom: 30px;">
+        <input type="number"
+               class="form-control"
+               style="width: 100% !important;"
+               id="amount" value="0">
+        <span class="input-group-btn">
+          <button id="generate" class="btn btn-success">
+            Random
+          </button>
+        </span>
+      </div>
     </div>
     <div class="col-xs-8"></div>
   </div>
@@ -72,6 +78,13 @@ text = amount.<b>ThaiBahtText()</b>
 
 @section scripts {
   <script>
+    $("#generate").click(function () {
+      // var amt = chance.integer({ min: @ViewBag.Min, max: @ViewBag.Max});
+      var amt = chance.integer({ min: -9999999999, max: 9999999999 }) / 100.0;
+      $("#amount").val(amt).change();
+
+    })
+
     $("#amount").val("121.50");
     fn1();
     $("#amount").keyup(fn1);

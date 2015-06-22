@@ -24,6 +24,8 @@ namespace ThaiBahtText.Web {
                 "~/Content/bootstrap.css",
                 // "~/Content/css/font-awesome.css",
                 "~/Content/site.css"));
+
+      BundleTable.EnableOptimizations = false;
     }
   }
 }
