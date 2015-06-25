@@ -13,8 +13,10 @@ trim_trailing_whitespace = true
 
 [*.cs]
 indent_size = 2
-spaces_around_operators = true
-curly_bracket_next_line = true
+spaces_around_operators = true 
+curly_bracket_next_line = true # not yet supported by VS plugin
+indent_brace_style = KNF # not yet supported by VS plugin
+
 
 [*.csproj]
 indent_size = 2
