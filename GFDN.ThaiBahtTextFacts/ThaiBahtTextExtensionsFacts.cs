@@ -62,7 +62,7 @@ namespace GreatFriends.ThaiBahtTextFacts {
       (12345678M).ThaiBahtText()
         .ShouldEqual("สิบสองล้านสามแสนสี่หมื่นห้าพันหกร้อยเจ็ดสิบแปดบาทถ้วน");
       (675001333111M).ThaiBahtText()
-        .ShouldEqual("หกแสนเจ็ดหมื่นห้าพันหนึ่งล้านสามแสนสามหมื่นสามพันหนึ่งร้อยสิบเอ็ดบาทถ้วน");
+        .ShouldEqual("หกแสนเจ็ดหมื่นห้าพันเอ็ดล้านสามแสนสามหมื่นสามพันหนึ่งร้อยสิบเอ็ดบาทถ้วน");
     }
 
     [Fact]
@@ -166,12 +166,6 @@ namespace GreatFriends.ThaiBahtTextFacts {
       Assert.Equal("หนึ่งร้อยสิบเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(111, UsesEt.Always));
       Assert.Equal("สองร้อยเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(201, UsesEt.Always));
       Assert.Equal("ห้าพันเอ็ดบาทถ้วน", ThaiBahtTextUtil.ThaiBahtText(5001, UsesEt.Always));
-    }
-
-    [Fact]
-    public void DefaultIsUseEt_TensOnly() {
-      (0101M).ThaiBahtText().ShouldEqual("หนึ่งร้อยหนึ่งบาทถ้วน");
-      (1001M).ThaiBahtText().ShouldEqual("หนึ่งพันหนึ่งบาทถ้วน");
     }
 
     [Fact]
@@ -344,9 +338,15 @@ namespace GreatFriends.ThaiBahtTextFacts {
     [Fact]
     public void Et_WithBigNumbers() {
       (101000101.11m).ThaiBahtText(unit: Unit.Million)
-        .ShouldEqual("หนึ่งร้อยหนึ่งล้านบาท");
+        .ShouldEqual("หนึ่งร้อยเอ็ดล้านบาท");
       (101000101.11m).ThaiBahtText(usesEt: UsesEt.Always, unit: Unit.Million)
         .ShouldEqual("หนึ่งร้อยเอ็ดล้านบาท");
+    }
+
+    [Fact]
+    public void EtAlways_ShouldBeDefault() {
+      (501m).ThaiBahtText().ShouldEqual("ห้าร้อยเอ็ดบาทถ้วน");
+      (501000000m).ThaiBahtText().ShouldEqual("ห้าร้อยเอ็ดล้านบาทถ้วน");
     }
 
   }

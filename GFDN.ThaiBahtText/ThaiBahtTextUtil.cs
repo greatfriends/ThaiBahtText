@@ -80,7 +80,7 @@ namespace GreatFriends.ThaiBahtText {
     /// <param name="appendBahtOnly">เพิ่มคำว่า 'ถ้วน' ท้ายข้อความ</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal? amount,
-                                      UsesEt usesEt = UsesEt.TensOnly,
+                                      UsesEt usesEt = UsesEt.Always,
                                       Unit unit = Unit.Baht,
                                       int decimalPlaces = 2,
                                       bool appendBahtOnly = true) {
@@ -100,7 +100,7 @@ namespace GreatFriends.ThaiBahtText {
     /// <param name="appendBahtOnly">เพิ่มคำว่า 'ถ้วน' ท้ายข้อความ</param>
     /// <returns>ข้อความจำนวนเงินภาษาไทย</returns>
     public static string ThaiBahtText(this decimal amount,
-                                      UsesEt usesEt = UsesEt.TensOnly,
+                                      UsesEt usesEt = UsesEt.Always,
                                       Unit unit = Unit.Baht,
                                       int decimalPlaces = 2,
                                       bool appendBahtOnly = true) {
