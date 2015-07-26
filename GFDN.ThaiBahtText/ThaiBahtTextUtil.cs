@@ -143,7 +143,11 @@ namespace GreatFriends.ThaiBahtText {
           case 3: format = "0.0##"; break;
           case 4: format = "0.0###"; break;
           case 5: format = "0.0####"; break;
-          default: format = "0.0#####"; break;
+          case 6: format = "0.0#####"; break;
+          default:
+            format = "0.0#";
+            decimalPlaces = 2;
+            break;
         }
       }
       else {

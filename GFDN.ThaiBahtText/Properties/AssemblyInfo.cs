@@ -37,3 +37,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("0.2.0")]
 
 [assembly: ContractVerification(false)]
+[assembly: InternalsVisibleTo("GFDN.ThaiBahtText.Tests")]
+[assembly: InternalsVisibleTo("GreatFriends.ThaiBahtText.Explorables")]
+
