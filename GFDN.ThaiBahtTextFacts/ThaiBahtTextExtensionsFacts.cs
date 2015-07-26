@@ -349,5 +349,14 @@ namespace GreatFriends.ThaiBahtTextFacts {
       (501000000m).ThaiBahtText().ShouldEqual("ห้าร้อยเอ็ดล้านบาทถ้วน");
     }
 
+    [Fact]
+    public void BUG_Issue45_OptionsNotUsedInSomeOverload() {
+      decimal? m = 5101m;
+
+      var s = m.ThaiBahtText(usesEt: UsesEt.TensOnly,
+                             appendBahtOnly: false);
+      s.ShouldEqual("ห้าพันหนึ่งร้อยหนึ่งบาท");
+    }
+    
   }
 }

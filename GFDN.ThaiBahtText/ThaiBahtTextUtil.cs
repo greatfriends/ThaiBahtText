@@ -44,7 +44,7 @@ namespace GreatFriends.ThaiBahtText {
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
 
-      return ThaiBahtText(amount.HasValue ? amount.Value : 0m,
+      return ThaiBahtText(amount ?? 0m,
                           options.UsesEt,
                           options.Unit,
                           options.DecimalPlaces,
@@ -87,7 +87,11 @@ namespace GreatFriends.ThaiBahtText {
       Contract.Ensures(Contract.Result<string>() != null);
       Contract.Ensures(Contract.Result<string>().Length > 0);
 
-      return ThaiBahtText(amount.HasValue ? amount.Value : 0m);
+      return ThaiBahtText(amount ?? 0m,
+                          usesEt: usesEt,
+                          unit: unit,
+                          decimalPlaces: decimalPlaces,
+                          appendBahtOnly: appendBahtOnly);
     }
 
 
