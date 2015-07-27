@@ -142,7 +142,7 @@ publish/
 *.publishproj
 
 # NuGet Packages
-*.nupkg
+
 # The packages folder can be ignored because of Package Restore
 **/packages/*
 # except build/, which is used as an MSBuild target.
@@ -199,9 +199,5 @@ FakesAssemblies/
 # Visual Studio 6 build log
 *.plg
 
-# Visual Studio 6 workspace options file
-<<<<<<< HEAD
-*.opt
-=======
-*.opt
->>>>>>> 883d17cf4d9169bc33f66fd8b150fe157a309a1d
+# Visual Studio 6 workspace options file 
+*.opt 
