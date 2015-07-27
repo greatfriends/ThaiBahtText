@@ -64,38 +64,39 @@ Nuget Package Page: https://www.nuget.org/packages/ThaiBahtText/
 
 Property | Type     |Description
 ---------| ---------|---------------
-UsesEt   | enum     | การใช้เอ็ดเมื่อมีค่าหนึ่งในหลักหน่วย กำหนดค่าเป็น `UsesEt.TensOnly` (เป็นค่าเริ่มต้น) เมื่อต้องการใช้เอ็ดในหลักสิบเท่านั้น และ  `UsesEt.Always` เมื่อต้องการใช้เอ็ดเสมอ
+UsesEt   | enum     | การใช้เอ็ดเมื่อมีค่าหนึ่งในหลักหน่วย กำหนดค่าเป็น  `UsesEt.Always` เมื่อต้องการใช้เอ็ดเสมอ (เป็นค่าเริ่มต้น) เช่น ห้าร้อยเอ็ดล้านถ้วน และ `UsesEt.TensOnly`  เมื่อต้องการใช้เอ็ดในหลักสิบเท่านั้น เช่น ห้าร้อยหนึ่งล้านถ้วน 
 Unit     | enum     | กำหนดหน่วยของข้อความที่ต้องการว่า จะเป็น `Unit.Baht` บาท (เป็นค่าเริ่มต้น) `Unit.Million` ล้านบาท `Unit.Billion` พันล้านบาท หรือ `Unit.Trillion` ล้านล้านบาท
-DecimalPlaces | int | จำนวนหน่วยทศนิยม (มีค่าเริ่มต้นเป็น 2) จะถูกนำไปใช้ก็ต่อเมื่อ Unit มีค่าไม่เท่ากับ `Unit.Baht`
-appendBahtOnly | bool | เพิ่มคำว่าถ้วนหรือไม่ (มีค่าเริ่มต้นเป็น true) 
- 
+DecimalPlaces | int | จำนวนหน่วยทศนิยม มีค่าได้ระหว่าง 0 ถึง 6 (มีค่าเริ่มต้นเป็น 2) จะถูกนำไปใช้ก็ต่อเมื่อ Unit มีค่าไม่เท่ากับ `Unit.Baht` เท่านั้น
+appendBahtOnly | bool | เพิ่มคำว่าถ้วนหรือไม่ (มีค่าเริ่มต้นเป็น `true`) 
+
+### UsesEt.Always
+ThaiBahtText(`UsesEt.Always`)
+ใช้เอ็ดเสมอ (เป็นค่าเริ่มต้น) สำหรับหลักหน่วยที่มีค่าเป็น 1 รวมถึงหลักล้านที่มีค่าเป็น 1 ด้วย
+**เป็นรูปแบบที่แนะนำให้ใช้** ตามหลักภาษาไทยที่ถูกต้องแนะนำโดยราชบัณฑิตยสภา
+
+```c#
+string s21 = (101M).ThaiBahtText(mode: UsesEt.Always);  // หนึ่งร้อยเอ็ดบาทถ้วน
+string s22 = (101M).ThaiBahtText();                     // หนึ่งร้อยเอ็ดบาทถ้วน
+    
+string s23 = (11M).ThaiBahtText();   // สิบเอ็ดบาทถ้วน
+string s24 = (211M).ThaiBahtText();  // สองร้อยสิบเอ็ดบาทถ้วน
+string s25 = (1001M).ThaiBahtText(); // หนึ่งพันเอ็ดบาทถ้วน
+string s26 = (1001000000M).ThaiBahtText(); // หนึ่งพันเอ็ดล้านบาทถ้วน
+```
 
 ### UsesEt.TensOnly
 ThaiBahtText(`UsesEt.TensOnly`)
 ใช้เอ็ดเฉพาะกับหลักสิบเท่านั้น (เฉพาะสิบเอ็ดถึงเก้าสิบเอ็ด) ถ้าไม่ระบุจะใช้ตัวเลือกนี้เป็นค่าเริ่มต้น
+**ไม่เป็นรูปแบบที่แนะนำให้ใช้**
 
 ```c#
-string s11 = (101M).ThaiBahtText(mode: UsesEt.TensOnly); // หนึ่งร้อย_หนึ่ง_บาทถ้วน
-string s12 = (101M).ThaiBahtText();    // หนึ่งร้อยหนึ่งบาทถ้วน
+string s11 = (101M).ThaiBahtText(mode: UsesEt.TensOnly); // หนึ่งร้อยหนึ่งบาทถ้วน
+string s12 = (101M).ThaiBahtText(UsesEt.TensOnly);    // หนึ่งร้อยหนึ่งบาทถ้วน
 
-string s13 = (11M).ThaiBahtText();     // สิบเอ็ดบาทถ้วน
-string s14 = (211M).ThaiBahtText();    // สองร้อยสิบเอ็ดบาทถ้วน
+string s13 = (11M).ThaiBahtText(UsesEt.TensOnly);     // สิบเอ็ดบาทถ้วน
+string s14 = (211M).ThaiBahtText(UsesEt.TensOnly);    // สองร้อยสิบเอ็ดบาทถ้วน
 string s15 = (1001M).ThaiBahtText(UsesEt.TensOnly); // หนึ่งพันหนึ่งบาทถ้วน
-string s16 = (1001000000M).ThaiBahtText();          // หนึ่งพันหนึ่งล้านบาทถ้วน
-```
-    
-### UsesEt.Always
-ThaiBahtText(`UsesEt.Always`)
-ใช้เอ็ดเสมอ สำหรับหลักหน่วยที่มีค่าเป็น 1 รวมถึงหลักล้านที่มีค่าเป็น 1 ด้วย
-
-```c#
-string s21 = (101M).ThaiBahtText(mode: UsesEt.Always);  // หนึ่งร้อย_เอ็ด_บาทถ้วน
-string s22 = (101M).ThaiBahtText(UsesEt.Always);        // หนึ่งร้อยเอ็ดบาทถ้วน
-    
-string s23 = (11M).ThaiBahtText(UsesEt.Always);   // สิบเอ็ดบาทถ้วน
-string s24 = (211M).ThaiBahtText(UsesEt.Always);  // สองร้อยสิบเอ็ดบาทถ้วน
-string s25 = (1001M).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดบาทถ้วน
-string s26 = (1001000000M).ThaiBahtText(UsesEt.Always); // หนึ่งพันเอ็ดล้านบาทถ้วน
+string s16 = (1001000000M).ThaiBahtText(UsesEt.TensOnly); // หนึ่งพันหนึ่งล้านบาทถ้วน
 ```
 
 ### หน่วยของจำนวนเงิน
