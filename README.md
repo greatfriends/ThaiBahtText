@@ -4,6 +4,8 @@
 [![Nuget Downloads](https://img.shields.io/nuget/dt/ThaiBahtText.svg)](https://www.nuget.org/packages/ThaiBahtText)
 
 # ThaiBahtText
+
+[![Join the chat at https://gitter.im/greatfriends/ThaiBahtText](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/greatfriends/ThaiBahtText?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 ให้ข้อความจำนวนเงินภาษาไทย เช่น จำนวน 121.50 บาท จะให้ผลลัพธ์เป็น "หนึ่งร้อยยี่สิบเอ็ดบาทห้าสิบสตางค์"
 
 
