@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFDN.ThaiBahtText", "GFDN.ThaiBahtText\GFDN.ThaiBahtText.csproj", "{80B1CE43-F13D-40EF-A5D2-0411066F5FBF}"
 EndProject
@@ -25,6 +25,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThaiBahtText.Web", "ThaiBah
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GFDN.ThaiBahtText.Tests", "GFDN.ThaiBahtText.Tests\GFDN.ThaiBahtText.Tests.csproj", "{3B858737-CB49-45BC-8B70-3C6FC1BEE1C8}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net-core", "net-core", "{020F98FA-C75E-4CBA-B45F-F235659761B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F414793C-265F-4146-9EDB-68ED8822980F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{65AEDD16-F069-433F-A926-A0E69782F1B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThaiBahtText", "net-core\ThaiBahtText\ThaiBahtText.csproj", "{EE62B6FE-BB25-49C1-AD49-C8C71FBE25EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThaiBahtTextTests", "ThaiBahtTextTests\ThaiBahtTextTests.csproj", "{66420355-20D0-40C2-8872-6DEA860A5ABF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,8 +57,25 @@ Global
 		{3B858737-CB49-45BC-8B70-3C6FC1BEE1C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B858737-CB49-45BC-8B70-3C6FC1BEE1C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B858737-CB49-45BC-8B70-3C6FC1BEE1C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE62B6FE-BB25-49C1-AD49-C8C71FBE25EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE62B6FE-BB25-49C1-AD49-C8C71FBE25EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE62B6FE-BB25-49C1-AD49-C8C71FBE25EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE62B6FE-BB25-49C1-AD49-C8C71FBE25EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66420355-20D0-40C2-8872-6DEA860A5ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66420355-20D0-40C2-8872-6DEA860A5ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66420355-20D0-40C2-8872-6DEA860A5ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66420355-20D0-40C2-8872-6DEA860A5ABF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F414793C-265F-4146-9EDB-68ED8822980F} = {020F98FA-C75E-4CBA-B45F-F235659761B4}
+		{65AEDD16-F069-433F-A926-A0E69782F1B6} = {020F98FA-C75E-4CBA-B45F-F235659761B4}
+		{EE62B6FE-BB25-49C1-AD49-C8C71FBE25EB} = {F414793C-265F-4146-9EDB-68ED8822980F}
+		{66420355-20D0-40C2-8872-6DEA860A5ABF} = {65AEDD16-F069-433F-A926-A0E69782F1B6}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CF3674F-70CB-498C-B534-12679F22129D}
 	EndGlobalSection
 EndGlobal
