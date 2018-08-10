@@ -1,10 +1,10 @@
 version: 1.0.{build}
 configuration: Release
 before_build:
-- nuget restore ".\ThaiBahtText.sln"
+- nuget restore ".\GreatFriends.ThaiBahtText.sln"
 build:
-  project: .\ThaiBahtText.sln
+  project: .\GreatFriends.ThaiBahtText.sln
   verbosity: minimal
 artifacts:
-- path: GFDN.ThaiBahtText\bin\Release\GreatFriends.ThaiBahtText.dll
+- path: GreatFriends.ThaiBahtText\bin\Release\ThaiBahtText.dll
   name: DLL File

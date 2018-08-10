@@ -11,7 +11,7 @@ namespace ThaiBahtText.Web.Controllers {
   public class HomeController : Controller {
 
     public ActionResult Index() {
-      string p = Server.MapPath("~/bin/GreatFriends.ThaiBahtText.dll");
+      string p = Server.MapPath("~/bin/ThaiBahtText.dll");
       Assembly asm = Assembly.LoadFrom(p);
       Version ver = asm.GetName().Version;
 

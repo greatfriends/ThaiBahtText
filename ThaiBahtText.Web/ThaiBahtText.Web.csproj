@@ -20,6 +20,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -174,9 +176,9 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GFDN.ThaiBahtText\GFDN.ThaiBahtText.csproj">
-      <Project>{80b1ce43-f13d-40ef-a5d2-0411066f5fbf}</Project>
-      <Name>GFDN.ThaiBahtText</Name>
+    <ProjectReference Include="..\GreatFriends.ThaiBahtText\GreatFriends.ThaiBahtText.csproj">
+      <Project>{19ac4c21-9785-4921-85d3-1a886bc3dd4a}</Project>
+      <Name>GreatFriends.ThaiBahtText</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
