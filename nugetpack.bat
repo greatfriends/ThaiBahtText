@@ -8,8 +8,8 @@ IF "%1" == "" GOTO SyntaxError
 
 REM main code
 git tag -a "v%1" -m "%1"
-cd GFDN.ThaiBahtText
-nuget pack GFDN.ThaiBahtText.csproj ^
+cd GreatFriends.ThaiBahtText
+nuget pack GreatFriends.ThaiBahtText.csproj ^
    -Version "%1" ^
 	 -Prop Configuration=Release ^
 	 -OutputDirectory "Nuget Packages"
@@ -20,7 +20,7 @@ git push origin master
 git push origin --tags
 @ECHO.
 @ECHO Push to NuGet
-nuget push "GFDN.ThaiBahtText\NuGet Packages\ThaiBahtText.%1.nupkg"
+nuget push "GreatFriends.ThaiBahtText\NuGet Packages\ThaiBahtText.%1.nupkg"
 GOTO End
 
 :SyntaxError
@@ -29,12 +29,12 @@ GOTO End
 @ECHO     nugetpack version
 @ECHO.
 @ECHO Sample:
-@ECHO. 
+@ECHO.
 @ECHO     nugetpack 0.1.2
 @ECHO.
-@ECHO     will create tag 'v0.1.2' 
+@ECHO     will create tag 'v0.1.2'
 @ECHO     and release and nuget package version '0.1.2'
 GOTO End
 
 :End
-@ECHO ON 
+@ECHO ON
