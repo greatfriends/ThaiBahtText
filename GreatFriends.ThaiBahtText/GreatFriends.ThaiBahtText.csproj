@@ -23,6 +23,7 @@
     <PackageLicenseUrl>https://github.com/greatfriends/ThaiBahtText/blob/master/LICENSE</PackageLicenseUrl>
     <RepositoryUrl>https://github.com/greatfriends/ThaiBahtText</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageIconUrl>https://avatars2.githubusercontent.com/u/1795432</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

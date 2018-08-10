@@ -1,4 +1,3 @@
-[![Stories in Ready](https://badge.waffle.io/greatfriends/ThaiBahtText.png?label=ready&title=Ready)](https://waffle.io/greatfriends/ThaiBahtText)
 [![Build status](https://ci.appveyor.com/api/projects/status/gdya3qrey5n3yb12?svg=true)](https://ci.appveyor.com/project/surrealist/thaibahttext)
 [![Nuget Version](https://img.shields.io/nuget/v/ThaiBahtText.svg)](https://www.nuget.org/packages/ThaiBahtText)
 [![Nuget Downloads](https://img.shields.io/nuget/dt/ThaiBahtText.svg)](https://www.nuget.org/packages/ThaiBahtText)
